@@ -8,7 +8,7 @@ in {
     outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.bspwm
     outputs.homeManagerModules.foot
-    outputs.homeManagerModules.tmux
+    outputs.homeManagerModules.zellij
     outputs.homeManagerModules.rofi
     outputs.homeManagerModules.scripts
     outputs.homeManagerModules.desktopEntries
@@ -17,12 +17,26 @@ in {
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.shell
     outputs.homeManagerModules.mako
+    outputs.homeManagerModules.ranger
   ];
 
-  colorScheme = nix-colors.colorSchemes.rose-pine;
+  colorScheme = nix-colors.colorSchemes.ayu-dark;
 
   nixpkgs = {
-    overlays = [ outputs.overlays.additions ];
+    overlays = [
+      outputs.overlays.additions
+      (final: prev: {
+        ranger-sixel = prev.ranger.overrideAttrs (oldAttrs: {
+          patches = (oldAttrs.patches or [ ]) ++ [
+            (prev.fetchpatch {
+              url =
+                "https://github.com/3ap/ranger/commit/ef9ec1f0e0786e2935c233e4321684514c2c6553.patch";
+              sha256 = "sha256-MJbIBuFeOvYnF6KntWJ2ODQ4KAcbnFEQ1axt1iQGkWY=";
+            })
+          ];
+        });
+      })
+    ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
@@ -37,6 +51,15 @@ in {
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
+
+  services.mpd-discord-rpc = {
+    enable = true;
+    settings.format = {
+      timestamp = "left";
+      large_image = "cri";
+      small_image = "";
+    };
+  };
 
   home.packages = with pkgs; [
     neofetch
@@ -87,6 +110,8 @@ in {
     ffmpegthumbnailer
     nixfmt
     piper
+    tagger
+    mpd-notification
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =

@@ -27,7 +27,7 @@ in {
     nvidiaPatches = true;
     extraConfig = ''
       exec-once=hyprpaper
-      exec-once=[workspace special; size 75% 20%;move 12.5% 40] foot -e tmux
+      exec-once=[workspace special; size 75% 20%;move 12.5% 40] foot -e zellij
       exec-once=pcmanfm --daemon-mode
       exec-once=mpc play
       bind=SUPER, b, togglespecialworkspace
@@ -55,8 +55,7 @@ in {
 
       bind=SUPER, j, exec, gnome-calculator
       bind=SUPER, g, exec, hyprpicker -a
-      bind=SUPER, return, exec, foot -e tmux
-      bind=SUPERSHIFT, return, exec, foot -e tmux attach
+      bind=SUPER, return, exec, foot -e zellij
       bind=SUPER, space, exec, rofi -show drun
       bind=SUPER, p, exec, firefox
       bind=SUPER, l, exec, sc
@@ -113,7 +112,7 @@ in {
 
       input {
         kb_options = caps:escape, grp:alt_shift_toggle, compose:rctrl
-        kb_layout = us, us, ru
+        kb_layout = us, ru
         kb_variant = dvorak,
         accel_profile = flat
       }

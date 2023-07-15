@@ -1,0 +1,31 @@
+efault_mode "normal"
+
+pane_frames false
+
+keybinds clear-defaults=true {
+  normal {
+    bind "Ctrl b" { SwitchToMode "tmux"; }
+    bind "Alt k" { GoToNextTab; }
+    bind "Alt j" { GoToPreviousTab; }
+    bind "Ctrl h" { MoveFocus "Left"; }
+    bind "Ctrl j" { MoveFocus "Down"; }
+    bind "Ctrl k" { MoveFocus "Up"; }
+    bind "Ctrl l" { MoveFocus "Right"; }
+  }
+
+  tmux {
+    bind "v" { NewPane "Right"; SwitchToMode "normal"; }
+    bind "h" { NewPane "Down"; SwitchToMode "normal"; }
+    bind "r" { SwitchToMode "RenameTab"; }
+    bind ">" { MovePane; }
+    bind "w" { NewTab; SwitchToMode "normal"; }
+    bind "a" { EditScrollback; SwitchToMode "normal"; }
+    bind "Esc" "Space" "Enter" { SwitchToMode "normal"; }
+  }
+}
+
+ui {
+  pane_frames {
+    rounded_corners true
+  }
+}

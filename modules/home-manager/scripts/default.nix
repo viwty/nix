@@ -22,10 +22,16 @@ let
   clip = pkgs.writeShellScriptBin "clip" ''
     wf-recorder -g "0,0 1920x1080" -c h264_nvenc -f $HOME/clips/`(date +%s)`.mp4 -a
   '';
+  six = pkgs.writeShellScriptBin "six" ''
+    file=$(mktemp)
+    convert $1 -resize 800x480 sixel:$file
+    cat $file
+    rm $file
+  '';
   config-reload = pkgs.writeShellScriptBin "config-reload" ''
     pkill -x hyprpaper
     hyprpaper &
-    tmux source ~/.config/tmux/tmux.conf
+    #tmux source ~/.config/tmux/tmux.conf
   '';
   hypr-toggle = pkgs.writeShellScriptBin "hypr-toggle" ''
     #!/usr/bin/env sh
@@ -51,6 +57,7 @@ in {
     clip
     config-reload
     hypr-toggle
+    six
     # dependencies
     maim
     jq

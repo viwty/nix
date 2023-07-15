@@ -13,7 +13,7 @@ in {
       harpoon
       presence-nvim
       fennel-vim
-      vim-tmux-navigator
+      #vim-tmux-navigator
       trouble-nvim
       barbar-nvim
       telescope-nvim

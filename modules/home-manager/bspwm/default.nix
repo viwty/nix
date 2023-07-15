@@ -41,8 +41,7 @@ in {
     enable = true;
     keybindings = {
       "super + Escape" = "pkill -USR1 -x sxhkd";
-      "super + Return" = "foot -e tmux";
-      "super + shift + Return" = "foot -e tmux attach";
+      "super + Return" = "foot -e zellij";
       "super + c" = "gnome-calculator";
       "super + space" = "rofi -show drun";
       "super + w" = "firefox";

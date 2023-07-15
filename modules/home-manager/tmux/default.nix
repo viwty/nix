@@ -9,14 +9,13 @@ in {
     prefix = "C-Space";
     clock24 = true;
 
-    plugins = with pkgs.tmuxPlugins; [ vim-tmux-navigator continuum ];
+    plugins = with pkgs.tmuxPlugins; [ vim-tmux-navigator ];
 
     baseIndex = 1;
     extraConfig = ''
       set-option -g status-position top
       #set-option -ga terminal-overrides ",alacritty:Tc"
       set -g default-terminal "foot"
-      set -g @continuum-restore 'on'
       unbind r
 
       unbind v

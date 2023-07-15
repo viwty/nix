@@ -14,4 +14,6 @@
   shell = import ./shell;
   mako = import ./mako;
   qute = import ./qute;
+  zellij = import ./zellij;
+  ranger = import ./ranger;
 }
