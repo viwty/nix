@@ -18,7 +18,6 @@ vim.g.mapleader = " "
 
 vim.cmd("set cb+=unnamedplus")
 vim.cmd("set so=10")
-
 local function setKeys(keys)
     for k, v in pairs(keys) do
         vim.keymap.set("n", k, v)
@@ -40,9 +39,8 @@ do
     ["<A-c>"] = ":BufferClose<CR>",
     ["<C-b>"] = ":!make<CR>",
     ["<C-w>h"] = ":split<CR>",
-    ["<A-Enter>"] = function() vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen end,
+    ["<leader>v"] = ":NERDTree<CR>",
   }
-  
   setKeys(keys)
 end
 
@@ -189,6 +187,13 @@ require("trouble").setup{}
 require("packer").startup(function(use)
   use "pigpigyyy/Yuescript-vim"
   use "nvim-treesitter/nvim-treesitter"
+  --use { 
+  --  "notvirtio/zellij.nvim",
+  --  config = function()
+  --    require("zellij").setup{
+  --      vimTmuxNavigatorKeybinds = true
+  --    }
+  --  end}
 
   use {
     'VonHeikemen/lsp-zero.nvim',

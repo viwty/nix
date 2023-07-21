@@ -31,7 +31,7 @@ let
   config-reload = pkgs.writeShellScriptBin "config-reload" ''
     pkill -x hyprpaper
     hyprpaper &
-    #tmux source ~/.config/tmux/tmux.conf
+    tmux source ~/.config/tmux/tmux.conf
   '';
   hypr-toggle = pkgs.writeShellScriptBin "hypr-toggle" ''
     #!/usr/bin/env sh

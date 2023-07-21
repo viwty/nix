@@ -14,7 +14,7 @@ in {
     baseIndex = 1;
     extraConfig = ''
       set-option -g status-position top
-      #set-option -ga terminal-overrides ",alacritty:Tc"
+      set-option -ga terminal-overrides ",alacritty:Tc"
       set -g default-terminal "foot"
       unbind r
 

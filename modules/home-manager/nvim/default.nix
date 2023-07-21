@@ -13,7 +13,7 @@ in {
       harpoon
       presence-nvim
       fennel-vim
-      #vim-tmux-navigator
+      vim-tmux-navigator
       trouble-nvim
       barbar-nvim
       telescope-nvim
@@ -22,6 +22,7 @@ in {
       vim-closer
       vim-endwise
       moonscript-vim
+      nerdtree
       {
         plugin = vimThemeFromScheme { scheme = config.colorScheme; };
         config = "colorscheme nix-${config.colorScheme.slug}";

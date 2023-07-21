@@ -6,14 +6,6 @@ in {
   programs.zsh.enable = true;
   programs.starship.enable = true;
 
-  home.file.".config/direnv/lib/use_flake.sh".text = ''
-    use_flake() {
-      watch_file flake.nix
-      watch_file flake.lock
-      eval "$(nix print-dev-env --profile "$(direnv_layout_dir)/flake-profile")"
-    }
-  '';
-
   # extra stuff
   programs.bat.enable = true;
   programs.exa.enable = true;
@@ -43,6 +35,7 @@ in {
       export NIXPKGS_ALLOW_UNFREE=1
       export CARGO_INCREMENTAL=0
       eval $(starship init zsh)
+      alias -s {png,jpg,webp,jpeg}=six
     '';
 
   };

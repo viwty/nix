@@ -7,8 +7,8 @@ in {
     nix-colors.homeManagerModules.default
     outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.bspwm
-    outputs.homeManagerModules.foot
-    outputs.homeManagerModules.zellij
+    outputs.homeManagerModules.alacritty
+    outputs.homeManagerModules.tmux
     outputs.homeManagerModules.rofi
     outputs.homeManagerModules.scripts
     outputs.homeManagerModules.desktopEntries
@@ -17,10 +17,10 @@ in {
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.shell
     outputs.homeManagerModules.mako
-    outputs.homeManagerModules.ranger
+    #outputs.homeManagerModules.ranger
   ];
 
-  colorScheme = nix-colors.colorSchemes.ayu-dark;
+  colorScheme = nix-colors.colorSchemes.nord;
 
   nixpkgs = {
     overlays = [
@@ -112,6 +112,9 @@ in {
     piper
     tagger
     mpd-notification
+    thunderbird
+    lutris
+    qbittorrent
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =
@@ -119,10 +122,6 @@ in {
 
   gtk = {
     enable = true;
-    cursorTheme = {
-      name = "Catppuccin-Latte-Mauve-Cursors";
-      package = pkgs.catppuccin-cursors.frappeMauve;
-    };
   };
   gtk.theme = {
     name = "${config.colorScheme.slug}";
