@@ -1,6 +1,8 @@
 { inputs, outputs, lib, config, pkgs, nix-colors, ... }:
 
-let inherit (nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
+let
+  inherit (nix-colors.lib-contrib { inherit pkgs; })
+    gtkThemeFromScheme colorSchemeFromPicture;
 in {
   # You can import other home-manager modules here
   imports = [
@@ -17,26 +19,19 @@ in {
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.shell
     outputs.homeManagerModules.mako
-    #outputs.homeManagerModules.ranger
   ];
 
-  colorScheme = nix-colors.colorSchemes.nord;
+  #colorScheme = colorSchemeFromPicture {
+  #  path = ./aurora.png;
+  #  kind = "light";
+  #};
+
+  colorScheme = nix-colors.colorSchemes.dracula;
+
+  #home.file."pics/bgs/current.png".source = ./aurora.png;
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      (final: prev: {
-        ranger-sixel = prev.ranger.overrideAttrs (oldAttrs: {
-          patches = (oldAttrs.patches or [ ]) ++ [
-            (prev.fetchpatch {
-              url =
-                "https://github.com/3ap/ranger/commit/ef9ec1f0e0786e2935c233e4321684514c2c6553.patch";
-              sha256 = "sha256-MJbIBuFeOvYnF6KntWJ2ODQ4KAcbnFEQ1axt1iQGkWY=";
-            })
-          ];
-        });
-      })
-    ];
+    overlays = [ outputs.overlays.additions ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
@@ -54,6 +49,7 @@ in {
 
   services.mpd-discord-rpc = {
     enable = true;
+    settings.id = 1129458952791400500;
     settings.format = {
       timestamp = "left";
       large_image = "cri";
@@ -115,14 +111,14 @@ in {
     thunderbird
     lutris
     qbittorrent
+    nix-prefetch
+    waydroid
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =
     "${pkgs.ff2mpv}/lib/mozilla/native-messaging-hosts/ff2mpv.json";
 
-  gtk = {
-    enable = true;
-  };
+  gtk = { enable = true; };
   gtk.theme = {
     name = "${config.colorScheme.slug}";
     package = gtkThemeFromScheme { scheme = config.colorScheme; };

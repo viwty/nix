@@ -42,6 +42,7 @@ in {
     keybindings = {
       "super + Escape" = "pkill -USR1 -x sxhkd";
       "super + Return" = "alacritty -e tmux";
+      "super + Shift + Return" = "alacritty -e tmux attach";
       "super + c" = "gnome-calculator";
       "super + space" = "rofi -show drun";
       "super + w" = "firefox";

@@ -19,7 +19,7 @@ in {
       lg = "lazygit";
       v = "nvim";
       cat = "bat";
-      ls = "exa -lh";
+      ls = "exa -lah";
       useflake = "echo \"use flake\" > .envrc && direnv allow";
     };
 

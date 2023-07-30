@@ -142,7 +142,7 @@
     '';
   };
 
-  fonts.fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Agave" ]; }) ];
+  fonts.fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

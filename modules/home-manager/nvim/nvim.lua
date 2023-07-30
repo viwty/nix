@@ -135,7 +135,7 @@ do
   local files = require("presence.file_assets")
 
   for _, v in pairs(files) do
-    v[2] = "http://a.thevirt.ru/nvimicon.png"
+    v[2] = "http://a.thevirt.ru/nvimiconfuckyoudiscordaaaaa.jpeg"
   end
 
   pres.setup{

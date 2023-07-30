@@ -56,6 +56,7 @@ in {
       bind=SUPER, j, exec, gnome-calculator
       bind=SUPER, g, exec, hyprpicker -a
       bind=SUPER, return, exec, alacritty -e tmux
+      bind=SUPERSHIFT, return, exec, alacritty -e tmux attach
       bind=SUPER, space, exec, rofi -show drun
       bind=SUPER, p, exec, firefox
       bind=SUPER, l, exec, sc
@@ -76,6 +77,10 @@ in {
       bind=SUPER, h, movefocus, d
       bind=SUPER, t, movefocus, u
       bind=SUPER, n, movefocus, r
+      bind=SUPERSHIFT , d, movewindow, l
+      bind=SUPERSHIFT , h, movewindow, d
+      bind=SUPERSHIFT , t, movewindow, u
+      bind=SUPERSHIFT , n, movewindow, r
 
       bind=SUPER, 1,workspace, 1
       bind=SUPER, 2,workspace, 2

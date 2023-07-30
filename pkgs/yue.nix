@@ -1,13 +1,13 @@
 { stdenv, gnumake, fetchFromGitHub }:
 stdenv.mkDerivation rec {
   name = "Yuescript";
-  version = "45c66c4b8ad0d34742ec7e7ea038cda8ddc0235e";
+  version = "00c4bee811b3c92d9885959db30790b01f8cb3e2";
 
   src = fetchFromGitHub {
     owner = "pigpigyyy";
     repo = "Yuescript";
     rev = "${version}";
-    sha256 = "YQz68Zb5QOlGe/14TMdaK9wwPMwM9gY6sTiDEZhoI4I=";
+    sha256 = "sha256-pVnq0V0qv3qUlCRimyf3SAjK3ElZCbKV9+SEDa54sPU=";
   };
 
   nativeBuildInputs = [ ];
