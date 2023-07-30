@@ -112,7 +112,6 @@ in {
     lutris
     qbittorrent
     nix-prefetch
-    waydroid
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =

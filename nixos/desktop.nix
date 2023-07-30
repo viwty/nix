@@ -79,6 +79,8 @@
 
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.waydroid.enable = true;
+  virtualisation.lxd.enable = true;
 
   sound.enable = false;
 
