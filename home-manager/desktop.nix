@@ -26,9 +26,9 @@ in {
   #  kind = "light";
   #};
 
-  colorScheme = nix-colors.colorSchemes.dracula;
+  colorScheme = nix-colors.colorSchemes.tokyo-night-dark;
 
-  #home.file."pics/bgs/current.png".source = ./aurora.png;
+  xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
 
   nixpkgs = {
     overlays = [ outputs.overlays.additions ];

@@ -8,7 +8,7 @@ let
     height = 1080;
     logoScale = 6.0;
   };
-  #wallpaper = "~/pics/bgs/current.png";
+  #wallpaper = ".config/hypr/wallpaper.png";
   colors = config.colorScheme.colors;
 in {
 
