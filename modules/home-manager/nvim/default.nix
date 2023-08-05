@@ -25,7 +25,9 @@ in {
       nerdtree
       {
         plugin = vimThemeFromScheme { scheme = config.colorScheme; };
-        config = "colorscheme nix-${config.colorScheme.slug}";
+        config = ''
+          colorscheme nix-${config.colorScheme.slug}
+        '';
       }
     ];
     extraLuaConfig = ''
@@ -35,7 +37,7 @@ in {
     defaultEditor = true;
   };
 
-  home.packages = with pkgs; [ wget unzip tree-sitter lua-language-server ];
+  home.packages = with pkgs; [ wget unzip tree-sitter lua-language-server neovide ];
   xdg.desktopEntries = {
     neovide = {
       name = "Neovide";

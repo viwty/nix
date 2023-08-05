@@ -2,13 +2,13 @@
 
 let
   inherit (nix-colors.lib-contrib { inherit pkgs; }) nixWallpaperFromScheme;
-  wallpaper = nixWallpaperFromScheme {
-    scheme = config.colorScheme;
-    width = 1920;
-    height = 1080;
-    logoScale = 6.0;
-  };
-  #wallpaper = ".config/hypr/wallpaper.png";
+  #wallpaper = nixWallpaperFromScheme {
+  #  scheme = config.colorScheme;
+  #  width = 1920;
+  #  height = 1080;
+  #  logoScale = 6.0;
+  #};
+  wallpaper = ".config/hypr/wallpaper.png";
   colors = config.colorScheme.colors;
 in {
 
@@ -16,6 +16,7 @@ in {
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     preload = ${wallpaper}
+    splash = true
 
     wallpaper = HDMI-A-1, ${wallpaper}
     wallpaper = HDMI-A-2, ${wallpaper}
@@ -39,6 +40,7 @@ in {
 
       decoration {
         rounding = 12
+        blur_size = 6
       }
 
       env = LIBVA_DRIVER_NAME, nvidia
@@ -66,6 +68,7 @@ in {
       bind=SUPER, u, exec, pcmanfm
       bind=SUPER, q, killactive
       bind=SUPER, MINUS, exec, config-reload
+      bind=SUPER, y, exec, env -u WAYLAND_DISPLAY neovide
 
       bind=SUPER, i, exec, hypr-toggle
 

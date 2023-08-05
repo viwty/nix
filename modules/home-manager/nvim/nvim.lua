@@ -16,6 +16,13 @@ vim.opt.backup = false
 
 vim.g.mapleader = " "
 
+if vim.g.neovide then
+  vim.o.guifont = "Iosevka Nerd Font:h14"
+  vim.g.neovide_transparency = 0.2
+  vim.g.neovide_cursor_vfx_mode = "pixiedust"
+  vim.g.neovide_cursor_vfx_particle_density = 48
+end
+
 vim.cmd("set cb+=unnamedplus")
 vim.cmd("set so=10")
 local function setKeys(keys)
@@ -135,7 +142,7 @@ do
   local files = require("presence.file_assets")
 
   for _, v in pairs(files) do
-    v[2] = "http://a.thevirt.ru/nvimiconfuckyoudiscordaaaaa.jpeg"
+    v[2] = "http://a.thevirt.ru/nvim.png"
   end
 
   pres.setup{

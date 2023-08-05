@@ -21,17 +21,14 @@ in {
     outputs.homeManagerModules.mako
   ];
 
-  #colorScheme = colorSchemeFromPicture {
-  #  path = ./aurora.png;
-  #  kind = "light";
-  #};
-
-  colorScheme = nix-colors.colorSchemes.tokyo-night-dark;
+  colorScheme = nix-colors.colorSchemes.catppuccin-frappe;
 
   xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
 
   nixpkgs = {
-    overlays = [ outputs.overlays.additions ];
+    overlays = [
+      outputs.overlays.additions
+    ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
@@ -112,6 +109,7 @@ in {
     lutris
     qbittorrent
     nix-prefetch
+    telegram-desktop
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =
