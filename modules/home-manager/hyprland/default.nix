@@ -16,7 +16,6 @@ in {
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     preload = ${wallpaper}
-    splash = true
 
     wallpaper = HDMI-A-1, ${wallpaper}
     wallpaper = HDMI-A-2, ${wallpaper}
