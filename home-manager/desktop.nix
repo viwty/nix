@@ -21,7 +21,7 @@ in {
     outputs.homeManagerModules.mako
   ];
 
-  colorScheme = nix-colors.colorSchemes.catppuccin-frappe;
+  colorScheme = nix-colors.colorSchemes.catppuccin-mocha;
 
   xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
 
@@ -105,7 +105,6 @@ in {
     piper
     tagger
     mpd-notification
-    thunderbird
     lutris
     qbittorrent
     nix-prefetch

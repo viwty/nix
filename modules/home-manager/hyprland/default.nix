@@ -12,7 +12,7 @@ let
   colors = config.colorScheme.colors;
 in {
 
-  home.packages = with pkgs; [ hyprpicker ];
+  home.packages = with pkgs; [ hyprpicker mpc-cli ];
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     preload = ${wallpaper}
@@ -67,7 +67,7 @@ in {
       bind=SUPER, u, exec, pcmanfm
       bind=SUPER, q, killactive
       bind=SUPER, MINUS, exec, config-reload
-      bind=SUPER, y, exec, env -u WAYLAND_DISPLAY neovide
+      bind=SUPER, y, exec, firefox https://mail.proton.me/u/1/inbox
 
       bind=SUPER, i, exec, hypr-toggle
 

@@ -23,6 +23,7 @@ in {
       vim-endwise
       moonscript-vim
       nerdtree
+      lazygit-nvim
       {
         plugin = vimThemeFromScheme { scheme = config.colorScheme; };
         config = ''
