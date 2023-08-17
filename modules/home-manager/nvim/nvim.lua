@@ -184,7 +184,8 @@ do
       auto_install = true,
 
       highlight = {
-          enable = true
+          enable = true,
+          disable = { "html", "javascript" },
       }
   }
 end

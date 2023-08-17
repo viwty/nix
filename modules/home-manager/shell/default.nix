@@ -17,7 +17,7 @@ in {
   programs.zsh = {
     shellAliases = {
       lg = "lazygit";
-      v = "nvim";
+      v = "fzf --bind 'enter:become(nvim {})\n'";
       cat = "bat";
       ls = "exa -lah";
       useflake = "echo \"use flake\" > .envrc && direnv allow";
@@ -35,7 +35,8 @@ in {
       export NIXPKGS_ALLOW_UNFREE=1
       export CARGO_INCREMENTAL=0
       eval $(starship init zsh)
-      alias -s {png,jpg,webp,jpeg}=six
+      
+      bindkey -s "^[v" "fzf --bind 'enter:become(nvim {})'\n"
     '';
 
   };

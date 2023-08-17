@@ -12,7 +12,12 @@ let
   colors = config.colorScheme.colors;
 in {
 
-  home.packages = with pkgs; [ hyprpicker mpc-cli ];
+  home.packages = with pkgs; [
+    hyprpicker
+    mpc-cli
+    xdg-desktop-portal-hyprland
+    hyprland-share-picker
+  ];
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     preload = ${wallpaper}
@@ -24,7 +29,6 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemdIntegration = true;
-    nvidiaPatches = true;
     extraConfig = ''
       exec-once=hyprpaper
       exec-once=[workspace special; size 75% 20%;move 12.5% 40] alacritty -e tmux
@@ -33,13 +37,14 @@ in {
       bind=SUPER, b, togglespecialworkspace
       bind=SUPERSHIFT, b, movetoworkspacesilent, special
 
-      bezier=easeoutback, 0.34, 1.5, 0.7, 0.97
-      animation=global, 1, 6, easeoutback
-      animation=workspaces, 1, 6, easeoutback, slidevert
+      bezier=easing, 0.34, 1.56, 0.64, 1
+      animation=global, 1, 6, easing
+      animation=workspaces, 1, 6, easing, slidevert
 
       decoration {
         rounding = 12
-        blur_size = 6
+        blur_size = 8
+        blur_passes = 2
       }
 
       env = LIBVA_DRIVER_NAME, nvidia
@@ -110,7 +115,6 @@ in {
       general {
         gaps_out = 20
         gaps_in = 10
-        no_cursor_warps = true
         col.active_border=0xff${colors.base0C}
         col.inactive_border=0xff${colors.base02}
         col.group_border_active=0xff${colors.base0B}
@@ -119,8 +123,8 @@ in {
 
       input {
         kb_options = caps:escape, grp:alt_shift_toggle, compose:rctrl
-        kb_layout = us, us, ru
-        kb_variant = dvorak,,
+        kb_layout = us, ru
+        kb_variant = dvorak,
         accel_profile = flat
       }
 
@@ -128,7 +132,6 @@ in {
       monitor=HDMI-A-2, highres, 1920x0, 1
 
       workspace=HDMI-A-2, 9
-      wsbind=9, HDMI-A-2
     '';
   };
 }

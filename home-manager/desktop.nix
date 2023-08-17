@@ -21,9 +21,9 @@ in {
     outputs.homeManagerModules.mako
   ];
 
-  colorScheme = nix-colors.colorSchemes.catppuccin-mocha;
+  colorScheme = nix-colors.colorSchemes.rose-pine;
 
-  xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
+  xdg.configFile."hypr/wallpaper.png".source = ./miku.png;
 
   nixpkgs = {
     overlays = [
@@ -72,7 +72,6 @@ in {
     fnlfmt
     ripgrep
     yue
-    rust-analyzer
     imagemagick
     mpv
     wf-recorder
@@ -109,6 +108,7 @@ in {
     qbittorrent
     nix-prefetch
     telegram-desktop
+    sfz
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =

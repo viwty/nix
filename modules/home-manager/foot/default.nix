@@ -29,7 +29,7 @@ in {
         bright4 = "${colors.base04}";
         bright5 = "${colors.base06}";
         bright6 = "${colors.base0F}";
-        bright7 = "${colors.base0F}";
+        bright7 = "${colors.base07}";
       };
 
       mouse = { hide-when-typing = "yes"; };

@@ -30,7 +30,7 @@ in {
     startupPrograms = [
       "armcord"
       "picom"
-      "setxkbmap -layout us,us,ru -variant dvorak,, -option grp:alt_shift_toggle,caps:escape"
+      "setxkbmap -layout us,ru -variant dvorak, -option grp:alt_shift_toggle,caps:escape"
       "xinput --set-prop 'Logitech G102 LIGHTSYNC Gaming Mouse' 'Device Accel Profile' -1"
       "feh --bg-scale ${wallpaper}"
       "xsetroot -cursor_name left_ptr"

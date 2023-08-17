@@ -1,51 +1,31 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   # You can import other NixOS modules here
   imports = [
-    # outputs.nixosModules.example
     outputs.nixosModules.gpg
-
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
     ./desktop-hardware.nix
   ];
 
   nixpkgs = {
     overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
     ];
-    # Configure your nixpkgs instance
     config = { allowUnfree = true; };
   };
 
   nix = {
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
 
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}")
       config.nix.registry;
 
     settings = {
-      # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-      # Deduplicate and optimize nix store
       auto-optimise-store = true;
     };
   };
 
   services.xserver.windowManager.bspwm.enable = true;
   programs.hyprland.enable = true;
-  programs.hyprland.nvidiaPatches = true;
 
   services.xserver.enable = true;
   services.xserver.displayManager.sddm = {
@@ -80,15 +60,12 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
 
-  sound.enable = false;
-
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true;
   };
   services.ratbagd.enable = true;
 
@@ -142,9 +119,7 @@
     '';
   };
 
-  fonts.fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
-
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
