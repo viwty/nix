@@ -26,6 +26,7 @@
 
   services.xserver.windowManager.bspwm.enable = true;
   programs.hyprland.enable = true;
+  programs.hyprland.nvidiaPatches = true;
 
   services.xserver.enable = true;
   services.xserver.displayManager.sddm = {
@@ -44,6 +45,7 @@
   '';
 
   time.timeZone = "Europe/Moscow";
+  time.hardwareClockInLocalTime = true;
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -71,7 +73,7 @@
 
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
-    allowedTCPPorts = [ 8000 ];
+    allowedTCPPorts = [ 8000 8080 ];
   };
   networking.wg-quick.interfaces = {
     wg0 = {

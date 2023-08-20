@@ -142,7 +142,7 @@ do
   local files = require("presence.file_assets")
 
   for _, v in pairs(files) do
-    v[2] = "http://a.thevirt.ru/nvim.png"
+    v[2] = "http://data.thevirt.ru/nvim.png"
   end
 
   pres.setup{
