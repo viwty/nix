@@ -17,7 +17,7 @@ in {
   programs.zsh = {
     shellAliases = {
       lg = "lazygit";
-      v = "fzf --bind 'enter:become(nvim {})\n'";
+      v = "fzf --bind 'enter:become(nvim {})'\n";
       cat = "bat";
       ls = "exa -lah";
       useflake = "echo \"use flake\" > .envrc && direnv allow";

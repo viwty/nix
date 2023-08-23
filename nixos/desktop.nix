@@ -72,8 +72,7 @@
   services.ratbagd.enable = true;
 
   networking.firewall = {
-    allowedUDPPorts = [ 51820 ];
-    allowedTCPPorts = [ 8000 8080 ];
+    enable = false;
   };
   networking.wg-quick.interfaces = {
     wg0 = {

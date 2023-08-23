@@ -28,6 +28,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
+    enableNvidiaPatches = true;
     systemdIntegration = true;
     extraConfig = ''
       exec-once=hyprpaper
