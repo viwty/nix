@@ -3,10 +3,10 @@
 let
   inherit (nix-colors.lib-contrib { inherit pkgs; }) nixWallpaperFromScheme;
   #wallpaper = nixWallpaperFromScheme {
-  #  scheme = config.colorScheme;
-  #  width = 1920;
-  #  height = 1080;
-  #  logoScale = 6.0;
+    scheme = config.colorScheme;
+    width = 1920;
+    height = 1080;
+    logoScale = 6.0;
   #};
   wallpaper = ".config/hypr/wallpaper.png";
   colors = config.colorScheme.colors;

@@ -2,8 +2,7 @@
 
 let inherit (nix-colors.lib-contrib { inherit pkgs; }) shellThemeFromScheme;
 in {
-  home.packages = with pkgs; [ thefuck ];
-  programs.zsh.enable = true;
+  programs.nushell.enable = true;
   programs.starship.enable = true;
 
   # extra stuff
@@ -14,30 +13,21 @@ in {
     nix-direnv.enable = true;
   };
 
-  programs.zsh = {
+  programs.nushell = {
     shellAliases = {
       lg = "lazygit";
       v = "fzf --bind 'enter:become(nvim {})'\n";
       cat = "bat";
-      ls = "exa -lah";
-      useflake = "echo \"use flake\" > .envrc && direnv allow";
+      useflake = "echo \"use flake\" > .envrc; direnv allow";
+      ddg = "lynx https://lite.duckduckgo.com/lite";
     };
+    envFile.text = ''
+      $env.NIXPKGS_ALLOW_UNFREE = 1
+      $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/virtio/.cargo/bin')
 
-    # just for the ctrl + left and right
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "thefuck" ];
-    };
-
-    initExtra = ''
-      export PATH="$HOME/.cargo/bin:$PATH"
-      export RUSTC_WRAPPER=$(where sccache)
-      export NIXPKGS_ALLOW_UNFREE=1
-      export CARGO_INCREMENTAL=0
-      eval $(starship init zsh)
-      
-      bindkey -s "^[v" "fzf --bind 'enter:become(nvim {})'\n"
+      $env.config = {
+        show_banner: false
+      }
     '';
-
   };
 }

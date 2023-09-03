@@ -38,13 +38,5 @@ in {
     defaultEditor = true;
   };
 
-  home.packages = with pkgs; [ wget unzip tree-sitter lua-language-server neovide ];
-  xdg.desktopEntries = {
-    neovide = {
-      name = "Neovide";
-      exec = "env -u WAYLAND_DISPLAY neovide";
-      terminal = false;
-      categories = [ "Utility" "TextEditor" ];
-    };
-  };
+  home.packages = with pkgs; [ wget unzip tree-sitter lua-language-server ];
 }

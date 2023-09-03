@@ -5,4 +5,5 @@
   # example = pkgs.callPackage ./example { };
   yue = pkgs.callPackage ./yue.nix { };
   mpd-notification = pkgs.callPackage ./mpd-notification.nix { };
+  clonehero = pkgs.callPackage ./clonehero.nix { };
 }

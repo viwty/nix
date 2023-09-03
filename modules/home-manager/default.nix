@@ -16,4 +16,5 @@
   qute = import ./qute;
   zellij = import ./zellij;
   ranger = import ./ranger;
+  neofetch = import ./neofetch;
 }

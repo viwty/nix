@@ -1,5 +1,4 @@
 { inputs, outputs, lib, config, pkgs, nix-colors, ... }:
-
 let
   inherit (nix-colors.lib-contrib { inherit pkgs; })
     gtkThemeFromScheme colorSchemeFromPicture;
@@ -19,15 +18,16 @@ in {
     outputs.homeManagerModules.neovim
     outputs.homeManagerModules.shell
     outputs.homeManagerModules.mako
+    outputs.homeManagerModules.neofetch
   ];
 
-  colorScheme = nix-colors.colorSchemes.rose-pine;
+  colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
 
-  xdg.configFile."hypr/wallpaper.png".source = ./miku.png;
+  xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
+    overlays = with outputs.overlays; [
+      additions
     ];
     config = {
       allowUnfree = true;
@@ -109,6 +109,9 @@ in {
     nix-prefetch
     telegram-desktop
     sfz
+    lynx
+    man-pages
+    clonehero
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =

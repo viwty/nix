@@ -8,6 +8,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+vim.opt.colorcolumn = "80"
 
 vim.opt.smartindent = true
 vim.opt.wrap = true
@@ -15,13 +16,6 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.g.mapleader = " "
-
-if vim.g.neovide then
-  vim.o.guifont = "Iosevka Nerd Font:h14"
-  vim.g.neovide_transparency = 0.2
-  vim.g.neovide_cursor_vfx_mode = "pixiedust"
-  vim.g.neovide_cursor_vfx_particle_density = 48
-end
 
 vim.cmd("set cb+=unnamedplus")
 vim.cmd("set so=10")
@@ -111,7 +105,7 @@ end
 
 do
   local function icon()
-    return ">-<"
+    return ">~<"
   end
 
   require("lualine").setup {

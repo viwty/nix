@@ -51,11 +51,10 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  programs.zsh.enable = true;
   users.users.virtio = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" ];
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
   };
   programs.dconf.enable = true;
 
@@ -76,16 +75,15 @@
   };
   networking.wg-quick.interfaces = {
     wg0 = {
-      address = [ "10.66.66.10/32" "fd42:42:42::10/128" ];
+      address = [ "10.66.66.2/32" "fd42:42:42::2/128" ];
       dns = [ "1.1.1.1" "1.0.0.1" ];
       privateKeyFile = "/home/virtio/.wgprivkey";
 
       peers = [{
-        publicKey = "7ReuCcTa98WVlkWBYv7SwSBudgpmkrpZzF9MQkkOM3A=";
+        publicKey = "GzIe5T+UPu6rg6PV/hCY1EycppeTSlhJHgQBEhVGjDo=";
         presharedKeyFile = "/home/virtio/.wgpresharedkey";
         allowedIPs = [ "0.0.0.0/0" "::/0" ];
-        endpoint = "46.29.236.25:58248";
-        persistentKeepalive = 25;
+        endpoint = "46.29.236.25:51820";
       }];
     };
   };
@@ -120,7 +118,7 @@
     '';
   };
 
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
+  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Mononoki" ]; }) ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";

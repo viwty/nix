@@ -2,13 +2,14 @@
 
 let
   inherit (nix-colors.lib-contrib { inherit pkgs; }) nixWallpaperFromScheme;
-  wallpaper = nixWallpaperFromScheme {
-    scheme = config.colorScheme;
-    width = 1920;
-    height = 1080;
-    logoScale = 6.0;
-  };
+  #wallpaper = nixWallpaperFromScheme {
+  #  scheme = config.colorScheme;
+  #  width = 1920;
+  #  height = 1080;
+  #  logoScale = 6.0;
+  #};
   colors = config.colorScheme.colors;
+  wallpaper = ".config/hypr/wallpaper.png";
 in {
   home.packages = with pkgs; [ xclip feh ];
   services.picom.enable = true;
@@ -42,7 +43,7 @@ in {
     keybindings = {
       "super + Escape" = "pkill -USR1 -x sxhkd";
       "super + Return" = "alacritty -e tmux";
-      "super + Shift + Return" = "alacritty -e tmux attach";
+      "super + shift + Return" = "alacritty -e tmux attach";
       "super + c" = "gnome-calculator";
       "super + space" = "rofi -show drun";
       "super + w" = "firefox";
