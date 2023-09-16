@@ -7,7 +7,6 @@ in {
   imports = [
     nix-colors.homeManagerModules.default
     outputs.homeManagerModules.hyprland
-    outputs.homeManagerModules.bspwm
     outputs.homeManagerModules.alacritty
     outputs.homeManagerModules.tmux
     outputs.homeManagerModules.rofi
@@ -21,14 +20,12 @@ in {
     outputs.homeManagerModules.neofetch
   ];
 
-  colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
+  colorScheme = nix-colors.colorSchemes.rose-pine-moon;
 
-  xdg.configFile."hypr/wallpaper.png".source = ./wallpaper.png;
+  xdg.configFile."hypr/wallpaper.png".source = ./hexmaniac.png;
 
   nixpkgs = {
-    overlays = with outputs.overlays; [
-      additions
-    ];
+    overlays = with outputs.overlays; [ additions ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
@@ -112,6 +109,7 @@ in {
     lynx
     man-pages
     clonehero
+    sccache
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =

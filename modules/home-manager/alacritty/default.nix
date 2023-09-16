@@ -7,7 +7,7 @@ in {
     window.opacity = 0.8;
 
     font = {
-      normal.family = "Mononoki Nerd Font";
+      normal.family = "Iosevka Nerd Font";
       size = 14;
     };
 
@@ -34,12 +34,12 @@ in {
       };
       bright = {
         black = "#${colors.base03}";
-        red = "#${colors.base09}";
-        green = "#${colors.base01}";
-        yellow = "#${colors.base02}";
-        blue = "#${colors.base04}";
-        magenta = "#${colors.base06}";
-        cyan = "#${colors.base0F}";
+        red = "#${colors.base08}";
+        green = "#${colors.base0B}";
+        yellow = "#${colors.base0A}";
+        blue = "#${colors.base0D}";
+        magenta = "#${colors.base0E}";
+        cyan = "#${colors.base0C}";
         white = "#${colors.base07}";
       };
     };

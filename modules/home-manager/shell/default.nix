@@ -7,7 +7,6 @@ in {
 
   # extra stuff
   programs.bat.enable = true;
-  programs.exa.enable = true;
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -18,16 +17,19 @@ in {
       lg = "lazygit";
       v = "fzf --bind 'enter:become(nvim {})'\n";
       cat = "bat";
-      useflake = "echo \"use flake\" > .envrc; direnv allow";
       ddg = "lynx https://lite.duckduckgo.com/lite";
     };
     envFile.text = ''
       $env.NIXPKGS_ALLOW_UNFREE = 1
       $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/virtio/.cargo/bin')
+      $env.RUSTC_WRAPPER = (which sccache | get path)
 
       $env.config = {
         show_banner: false
       }
+    '';
+    extraConfig = ''
+      def useflake () { echo "use flake" | save .envrc; direnv allow }
     '';
   };
 }

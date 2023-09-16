@@ -3,10 +3,10 @@
 let
   inherit (nix-colors.lib-contrib { inherit pkgs; }) nixWallpaperFromScheme;
   #wallpaper = nixWallpaperFromScheme {
-    scheme = config.colorScheme;
-    width = 1920;
-    height = 1080;
-    logoScale = 6.0;
+  # scheme = config.colorScheme;
+  # width = 1920;
+  # height = 1080;
+  # logoScale = 6.0;
   #};
   wallpaper = ".config/hypr/wallpaper.png";
   colors = config.colorScheme.colors;
@@ -39,8 +39,8 @@ in {
       bind=SUPERSHIFT, b, movetoworkspacesilent, special
 
       bezier=easing, 0.34, 1.56, 0.64, 1
-      animation=global, 1, 6, easing
-      animation=workspaces, 1, 6, easing, slidevert
+      animation=global, 0, 6, easing
+      animation=workspaces, 0, 6, easing, slidevert
 
       decoration {
         rounding = 12
@@ -123,7 +123,7 @@ in {
       }
 
       input {
-        kb_options = caps:escape, grp:alt_shift_toggle, compose:rctrl
+        kb_options = caps:escape, grp:alt_shift_toggle
         kb_layout = us, ru
         kb_variant = dvorak,
         accel_profile = flat

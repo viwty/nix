@@ -32,7 +32,8 @@ in {
       "armcord"
       "picom"
       "setxkbmap -layout us,ru -variant dvorak, -option grp:alt_shift_toggle,caps:escape"
-      "xinput --set-prop 'Logitech G102 LIGHTSYNC Gaming Mouse' 'Device Accel Profile' -1"
+      "xinput --set-prop 'Logitech G102 LIGHTSYNC Gaming Mouse' 'libinput Accel Profile' -1"
+      "xinput --set-prop 'pointer:Logitech G102 LIGHTSYNC Gaming Mouse' 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 2"
       "feh --bg-scale ${wallpaper}"
       "xsetroot -cursor_name left_ptr"
     ];
