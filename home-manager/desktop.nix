@@ -20,7 +20,7 @@ in {
     outputs.homeManagerModules.neofetch
   ];
 
-  colorScheme = nix-colors.colorSchemes.rose-pine-moon;
+  colorScheme = nix-colors.colorSchemes.rose-pine;
 
   xdg.configFile."hypr/wallpaper.png".source = ./hexmaniac.png;
 
@@ -54,10 +54,6 @@ in {
   home.packages = with pkgs; [
     neofetch
     firefox-bin
-    hyprpaper
-    slurp
-    grim
-    wl-clipboard
     wireplumber
     ncmpcpp
     yt-dlp
@@ -65,28 +61,20 @@ in {
     armcord
     btop
     killall
-    lua53Packages.fennel
-    fnlfmt
     ripgrep
     yue
     imagemagick
     mpv
     wf-recorder
-    imv
     prismlauncher
-    pkg-config
     pcmanfm
     bitwarden
     gimp
     steam
     qpwgraph
-    ark
     protontricks
     fzf
-    sshfs
     virt-manager
-    sccache
-    blender
     pulseaudio # for pactl
     gnome.gnome-calculator
     wine64
@@ -94,7 +82,6 @@ in {
     p7zip
     craftos-pc
     pavucontrol
-    nvtop
     ghidra
     ffmpegthumbnailer
     nixfmt
@@ -108,7 +95,6 @@ in {
     sfz
     lynx
     man-pages
-    clonehero
     sccache
   ];
 

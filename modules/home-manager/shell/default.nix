@@ -16,6 +16,7 @@ in {
     shellAliases = {
       lg = "lazygit";
       v = "fzf --bind 'enter:become(nvim {})'\n";
+      grep = "rg";
       cat = "bat";
       ddg = "lynx https://lite.duckduckgo.com/lite";
     };

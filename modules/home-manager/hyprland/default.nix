@@ -15,6 +15,11 @@ in {
   home.packages = with pkgs; [
     hyprpicker
     mpc-cli
+    hyprpaper
+    imv
+    grim
+    wl-clipboard
+    slurp
     xdg-desktop-portal-hyprland
     hyprland-share-picker
   ];
@@ -44,8 +49,8 @@ in {
 
       decoration {
         rounding = 12
-        blur_size = 8
-        blur_passes = 2
+        blur_size = 4
+        blur_passes = 1
       }
 
       env = LIBVA_DRIVER_NAME, nvidia
