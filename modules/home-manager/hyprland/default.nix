@@ -37,21 +37,22 @@ in {
     systemdIntegration = true;
     extraConfig = ''
       exec-once=hyprpaper
-      exec-once=[workspace special; size 75% 20%;move 12.5% 40] alacritty -e tmux
       exec-once=pcmanfm --daemon-mode
       exec-once=mpc play
-      bind=SUPER, b, togglespecialworkspace
-      bind=SUPERSHIFT, b, movetoworkspacesilent, special
+      exec-once=ts3client
 
       bezier=easing, 0.34, 1.56, 0.64, 1
-      animation=global, 0, 6, easing
-      animation=workspaces, 0, 6, easing, slidevert
+      animation=global, 1, 6, easing
+      animation=workspaces, 1, 6, easing, slidevert
 
       decoration {
         rounding = 12
+        blur = 0
         blur_size = 4
         blur_passes = 1
       }
+
+      bind=,mouse:276,pass,^(TeamSpeak 3)$
 
       env = LIBVA_DRIVER_NAME, nvidia
       env = XDG_SESSION_TYPE, wayland
@@ -60,10 +61,7 @@ in {
       env = MOZ_ENABLE_WAYLAND, 1
 
       windowrule=float, title:^(TermFloat)(.*)$
-      windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
-      windowrulev2 = noanim,class:^(xwaylandvideobridge)$
-      windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
-      #windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
+      windowrule=float, title:^(TeamSpeak 3)$
 
       bind=SUPER, j, exec, gnome-calculator
       bind=SUPER, g, exec, hyprpicker -a
@@ -90,20 +88,20 @@ in {
       bind=SUPER, h, movefocus, d
       bind=SUPER, t, movefocus, u
       bind=SUPER, n, movefocus, r
-      bind=SUPERSHIFT , d, movewindow, l
-      bind=SUPERSHIFT , h, movewindow, d
-      bind=SUPERSHIFT , t, movewindow, u
-      bind=SUPERSHIFT , n, movewindow, r
+      bind=SUPERSHIFT, d, movewindow, l
+      bind=SUPERSHIFT, h, movewindow, d
+      bind=SUPERSHIFT, t, movewindow, u
+      bind=SUPERSHIFT, n, movewindow, r
 
-      bind=SUPER, 1,workspace, 1
-      bind=SUPER, 2,workspace, 2
-      bind=SUPER, 3,workspace, 3
-      bind=SUPER, 4,workspace, 4
-      bind=SUPER, 5,workspace, 5
-      bind=SUPER, 6,workspace, 6
-      bind=SUPER, 7,workspace, 7
-      bind=SUPER, 8,workspace, 8
-      bind=SUPER, 9,workspace, 9
+      bind=SUPER, 1, workspace, 1
+      bind=SUPER, 2, workspace, 2
+      bind=SUPER, 3, workspace, 3
+      bind=SUPER, 4, workspace, 4
+      bind=SUPER, 5, workspace, 5
+      bind=SUPER, 6, workspace, 6
+      bind=SUPER, 7, workspace, 7
+      bind=SUPER, 8, workspace, 8
+      bind=SUPER, 9, workspace, 9
 
       bind=SUPERSHIFT, 1, movetoworkspacesilent, 1
       bind=SUPERSHIFT, 2, movetoworkspacesilent, 2
@@ -130,7 +128,7 @@ in {
       input {
         kb_options = caps:escape, grp:alt_shift_toggle
         kb_layout = us, ru
-        kb_variant = dvorak,
+        kb_variant = dvorak,phonetic_dvorak
         accel_profile = flat
       }
 

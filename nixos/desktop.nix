@@ -22,6 +22,7 @@
   #services.xserver.windowManager.bspwm.enable = true;
   programs.hyprland.enable = true;
   programs.hyprland.nvidiaPatches = true;
+  zramSwap.enable = true;
 
   services.xserver.enable = true;
   services.xserver.displayManager.sddm = {
@@ -57,7 +58,7 @@
        superuser_map      root      postgres
        superuser_map      postgres  postgres
        # Let other names login as themselves
-       superuser_map      virtie    postgres
+       superuser_map      virtio    postgres
     '';
   };
 
@@ -71,9 +72,12 @@
   time.timeZone = "Europe/Moscow";
   time.hardwareClockInLocalTime = true;
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.grub = {
+   enable = true;
+   device = "/dev/sda";
+   #boot.loader.grub.useOSProber = true;
+   enableCryptodisk = true;
+  };
 
   users.users.virtio = {
     isNormalUser = true;
@@ -141,7 +145,7 @@
   };
 
   fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
+    [ (nerdfonts.override { fonts = [ "Agave" ]; }) ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";

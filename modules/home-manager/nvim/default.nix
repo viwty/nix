@@ -1,107 +1,43 @@
-{ config, lib, pkgs, nix-colors, ... }:
+{ config, lib, pkgs, nix-colors, buildVimPluginFrom2Nix, ... }:
 
 let inherit (nix-colors.lib-contrib { inherit pkgs; }) vimThemeFromScheme;
 in {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       {
-        plugin = lazy-nvim;
+        plugin = packer-nvim;
         type = "lua";
         config = ''
-        require("packer").startup(function(use)
-        use "pigpigyyy/Yuescript-vim"
-        use "nvim-treesitter/nvim-treesitter"
-        use "xiyaowong/transparent.nvim"
+          require("packer").startup(function(use)
+          use "pigpigyyy/Yuescript-vim"
+          use "nvim-treesitter/nvim-treesitter"
+          use "xiyaowong/transparent.nvim"
+          use "viwty/presence.nvim"
 
-        use {
-          "VonHeikemen/lsp-zero.nvim",
-          branch = "v1.x",
-          requires = {
-            { "neovim/nvim-lspconfig" },
+          use {
+            "VonHeikemen/lsp-zero.nvim",
+            branch = "v1.x",
+            requires = {
+              { "neovim/nvim-lspconfig" },
 
-            { "hrsh7th/nvim-cmp" },
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "saadparwaiz1/cmp_luasnip" },
-            { "hrsh7th/cmp-nvim-lua" },
+              { "hrsh7th/nvim-cmp" },
+              { "hrsh7th/cmp-nvim-lsp" },
+              { "hrsh7th/cmp-buffer" },
+              { "hrsh7th/cmp-path" },
+              { "saadparwaiz1/cmp_luasnip" },
+              { "hrsh7th/cmp-nvim-lua" },
 
-            { "L3MON4D3/LuaSnip" },
-            { "rafamadriz/friendly-snippets" },
+              { "L3MON4D3/LuaSnip" },
+              { "rafamadriz/friendly-snippets" },
+            }
           }
-        }
-        end)
+          end)
         '';
       }
-      packer-nvim
-      nvim-lspconfig
       nvim-dap
+      lsp-inlayhints-nvim
       vim-numbertoggle
-      {
-        plugin = lualine-nvim;
-        type = "lua";
-        config = ''
-        local function icon()
-          return ">~<"
-        end
-
-        require("lualine").setup {
-          globalstatus = true,
-          extensions = {
-            "quickfix",
-            "symbols-outline"
-          },
-
-          sections = {
-            lualine_a = { icon },
-            lualine_c = {},
-            lualine_x = { "filename" }
-          },
-
-          inactive_sections = {
-            lualine_a = { icon },
-            lualine_c = {},
-            lualine_x = { "filename" }
-          }
-        }
-        '';
-      }
-      {
-        plugin = presence-nvim;
-        type = "lua";
-        config = ''
-        local pres = require("presence")
-
-        pres.setup {
-          auto_update = true,
-          main_image = "file",
-        }
-        '';
-      }
-      fennel-vim
       vim-tmux-navigator
-      {
-        plugin = trouble-nvim;
-        type = "lua";
-        config = ''
-        require("trouble").setup {}
-        '';
-      }
-      {
-        plugin = telescope-nvim;
-        type = "lua";
-        config = ''
-        local builtin = require("telescope.builtin")
-        local themes = require("telescope.themes")
-        local theme = themes.get_dropdown({})
-        local diag = themes.get_dropdown({})
-        diag.bufnr = 0
-
-        vim.keymap.set("n", "<leader>ff", function() builtin.find_files(theme) end, {})
-        vim.keymap.set("n", "<leader>fg", function() builtin.live_grep(theme) end, {})
-        vim.keymap.set("n", "<leader>fd", function() builtin.diagnostics(diag) end, {})
-        '';
-      }
       nvim-web-devicons
       plenary-nvim
       auto-pairs
@@ -110,133 +46,160 @@ in {
         plugin = harpoon;
         type = "lua";
         config = ''
-        local mark = require("harpoon.mark")
-        local ui = require("harpoon.ui")
+          local mark = require("harpoon.mark")
+          local ui = require("harpoon.ui")
 
-        local set = vim.keymap.set
+          local set = vim.keymap.set
 
-        set("n", "<C-a>", function() mark.add_file() end)
-        set("n", "<C-s>", function() ui.toggle_quick_menu() end)
-        set("n", "<A-1>", function() ui.nav_file(1) end)
-        set("n", "<A-2>", function() ui.nav_file(2) end)
-        set("n", "<A-3>", function() ui.nav_file(3) end)
-        set("n", "<A-4>", function() ui.nav_file(4) end)
+          set("n", "<C-a>", function() mark.add_file() end)
+          set("n", "<C-o>", function() ui.toggle_quick_menu() end)
+          set("n", "<A-h>", function() ui.nav_file(1) end)
+          set("n", "<A-t>", function() ui.nav_file(2) end)
+          set("n", "<A-g>", function() ui.nav_file(3) end)
+          set("n", "<A-c>", function() ui.nav_file(4) end)
         '';
       }
       {
         plugin = oil-nvim;
         type = "lua";
         config = ''
-        require("oil").setup({
-          default_file_explorer = true,
-        })
+          require("oil").setup({
+            default_file_explorer = true,
+          })
 
-        vim.keymap.set("n", "-", "<CMD>Oil<CR>")
+          vim.keymap.set("n", "-", "<CMD>Oil<CR>")
         '';
       }
       {
         plugin = vimThemeFromScheme { scheme = config.colorScheme; };
         config = ''
-        colorscheme nix-${config.colorScheme.slug}
+          colorscheme nix-${config.colorScheme.slug}
         '';
       }
       {
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
         config = ''
-        require("nvim-treesitter.configs").setup {
-            highlight = {
-                enable = true
-            }
-        }
+          require("nvim-treesitter.configs").setup {
+              highlight = {
+                  enable = true
+              }
+          }
+        '';
+      }
+      {
+        plugin = telescope-nvim;
+        type = "lua";
+        config = ''
+          local builtin = require("telescope.builtin")
+          local themes = require("telescope.themes")
+          local theme = themes.get_dropdown({})
+          local diag = themes.get_dropdown({})
+          diag.bufnr = 0
+
+          vim.keymap.set("n", "<C-p>", function() builtin.find_files(theme) end, {})
+          vim.keymap.set("n", "<leader>p", function() builtin.live_grep(theme) end, {})
         '';
       }
     ];
     extraLuaConfig = ''
-    vim.cmd [[packadd packer.nvim]]
+      vim.cmd [[packadd packer.nvim]]
 
-    vim.loader.enable()
+      vim.loader.enable()
 
-    vim.opt.nu = true
+      vim.opt.nu = true
 
-    vim.opt.tabstop = 2
-    vim.opt.softtabstop = 2
-    vim.opt.shiftwidth = 2
-    vim.opt.expandtab = true
-    vim.opt.colorcolumn = "80"
+      vim.opt.tabstop = 2
+      vim.opt.softtabstop = 2
+      vim.opt.shiftwidth = 2
+      vim.opt.expandtab = true
+      vim.opt.colorcolumn = "80"
 
-    vim.opt.smartindent = true
-    vim.opt.wrap = true
-    vim.opt.swapfile = false
-    vim.opt.backup = false
+      vim.opt.smartindent = true
+      vim.opt.wrap = true
+      vim.opt.swapfile = false
+      vim.opt.backup = false
 
-    vim.g.mapleader = " "
+      vim.g.mapleader = " "
 
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
 
-    vim.opt.termguicolors = true
+      vim.opt.termguicolors = true
 
-    vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-      callback = function() vim.lsp.buf.format { async = false } end,
-    })
+      vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        callback = function() vim.lsp.buf.format { async = false } end,
+      })
 
-    vim.cmd("set cb+=unnamedplus")
-    vim.cmd("set so=10")
+      require("presence"):setup {
+        auto_update = true,
+        main_image = "file",
+        buttons = true,
+      }
 
-    local function setKeys(keys)
-      for k, v in pairs(keys) do
-        vim.keymap.set("n", k, v)
+      vim.cmd("set cb+=unnamedplus")
+      vim.cmd("set so=10")
+
+      local function setKeys(keys)
+        for k, v in pairs(keys) do
+          vim.keymap.set("n", k, v)
+        end
       end
-    end
 
-    local keys = {
-      ["<C-w>h"] = ":split<CR>",
-      ["<leader>v"] = ":NERDTreeToggle<CR>",
-    }
-    setKeys(keys)
+      local keys = {
+        ["<C-w>h"] = ":split<CR>",
+        ["<C-t>"] = ":term<CR>a",
+        ["<C-g>"] = ":TransparentToggle<CR>:colorscheme nix-${config.colorScheme.slug}<CR>",
+      }
+      setKeys(keys)
 
-    local lsp = require("lsp-zero")
+      local ih = require('lsp-inlayhints')
+      ih.setup{
+        highlight = "Comment"
+      }
 
-    lsp.preset("recommended")
+      local lsp = require("lsp-zero")
 
-    lsp.setup_servers({ "rust_analyzer", "lua_ls" })
+      lsp.preset("recommended")
 
-    local cmp = require('cmp')
-    local cmp_select = { behavior = cmp.SelectBehavior.Select }
-    local cmp_mappings = lsp.defaults.cmp_mappings({
-      ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-      ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-      ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-      ["<C-Space>"] = cmp.mapping.complete(),
-    })
+      lsp.setup_servers({ "rust_analyzer", "lua_ls" })
 
-    lsp.set_preferences({
-      sign_icons = {}
-    })
+      local cmp = require('cmp')
+      local cmp_select = { behavior = cmp.SelectBehavior.Select }
+      local cmp_mappings = lsp.defaults.cmp_mappings({
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ["<C-Space>"] = cmp.mapping.complete(),
+      })
 
-    lsp.setup_nvim_cmp({
-      mapping = cmp_mappings
-    })
+      lsp.set_preferences({
+        sign_icons = {}
+      })
 
-    lsp.on_attach(function(client, bufnr)
-      local opts = { buffer = bufnr, remap = false }
+      lsp.setup_nvim_cmp({
+        mapping = cmp_mappings
+      })
 
-      vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-      vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-      vim.keymap.set("n", "<leader>ls", function() vim.lsp.buf.workspace_symbol() end, opts)
-      vim.keymap.set("n", "<leader>ld", function() vim.diagnostic.open_float() end, opts)
-      vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-      vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-      vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
-      vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.references() end, opts)
-      vim.keymap.set("n", "<leader>ln", function() vim.lsp.buf.rename() end, opts)
-      vim.keymap.set("n", "<C-f>", function() vim.lsp.buf.format { async = true } end, opts)
-      vim.keymap.set("i", "<C-f>", function() vim.lsp.buf.format { async = true } end, opts)
-      vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-    end)
+      lsp.on_attach(function(client, bufnr)
+        local opts = { buffer = bufnr, remap = false }
+        ih.on_attach(client, bufnr)
 
-    lsp.setup()
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set("n", "<leader>ls", function() vim.lsp.buf.workspace_symbol() end, opts)
+        vim.keymap.set("n", "<leader>ld", function() vim.diagnostic.open_float() end, opts)
+        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+        vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.references() end, opts)
+        vim.keymap.set("n", "<leader>ln", function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set("n", "<C-f>", function() vim.lsp.buf.format { async = true } end, opts)
+        vim.keymap.set("i", "<C-f>", function() vim.lsp.buf.format { async = true } end, opts)
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+      end)
+
+      lsp.setup()
     '';
     enable = true;
     defaultEditor = true;

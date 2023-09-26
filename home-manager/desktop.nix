@@ -21,7 +21,6 @@ in {
   ];
 
   colorScheme = nix-colors.colorSchemes.rose-pine;
-
   xdg.configFile."hypr/wallpaper.png".source = ./hexmaniac.png;
 
   nixpkgs = {
@@ -82,13 +81,10 @@ in {
     p7zip
     craftos-pc
     pavucontrol
-    ghidra
     ffmpegthumbnailer
     nixfmt
     piper
-    tagger
     mpd-notification
-    lutris
     qbittorrent
     nix-prefetch
     telegram-desktop
@@ -96,6 +92,9 @@ in {
     lynx
     man-pages
     sccache
+    cargo-generate
+    nheko
+    teamspeak_client
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =
