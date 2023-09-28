@@ -3,11 +3,11 @@
 {
   programs.git = {
     enable = true;
-    userEmail = "tobich228@gmail.com"; # It's in the GPG key anyway.
-    userName = "notvirtio";
+    userEmail = "viwty@proton.me"; # It's in the GPG key anyway.
+    userName = "viwty";
     signing = {
       signByDefault = true;
-      key = "E2A038A73BC2239D";
+      key = "54AA28B7A3494432";
     };
   };
 
