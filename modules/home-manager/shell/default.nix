@@ -12,6 +12,10 @@ in {
     nix-direnv.enable = true;
   };
 
+  home.packages = with pkgs; [
+    waifu2x-converter-cpp
+  ];
+
   programs.nushell = {
     shellAliases = {
       lg = "lazygit";
@@ -19,6 +23,7 @@ in {
       grep = "rg";
       cat = "bat";
       ddg = "lynx https://lite.duckduckgo.com/lite";
+      waifu = "waifu2x-converter-cpp --scale-ratio 4 -i";
     };
     envFile.text = ''
       $env.NIXPKGS_ALLOW_UNFREE = 1

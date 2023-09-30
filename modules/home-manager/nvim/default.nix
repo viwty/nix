@@ -10,7 +10,6 @@ in {
         config = ''
           require("packer").startup(function(use)
           use "pigpigyyy/Yuescript-vim"
-          use "nvim-treesitter/nvim-treesitter"
           use "xiyaowong/transparent.nvim"
           use "viwty/presence.nvim"
 
@@ -34,8 +33,6 @@ in {
           end)
         '';
       }
-      nvim-dap
-      lsp-inlayhints-nvim
       vim-numbertoggle
       vim-tmux-navigator
       nvim-web-devicons
@@ -152,11 +149,6 @@ in {
         ["<C-g>"] = ":TransparentToggle<CR>:colorscheme nix-${config.colorScheme.slug}<CR>",
       }
       setKeys(keys)
-
-      local ih = require('lsp-inlayhints')
-      ih.setup{
-        highlight = "Comment"
-      }
 
       local lsp = require("lsp-zero")
 

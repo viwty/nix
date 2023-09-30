@@ -36,6 +36,7 @@ in {
     enableNvidiaPatches = true;
     systemdIntegration = true;
     extraConfig = ''
+      exec-once=sleep 1
       exec-once=hyprpaper
       exec-once=pcmanfm --daemon-mode
       exec-once=mpc play

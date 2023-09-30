@@ -27,10 +27,6 @@
   services.xserver.enable = true;
   services.xserver.displayManager.sddm = {
     enable = true;
-    settings.Autologin = {
-      User = "virtio";
-      Session = "hyprland.desktop";
-    };
   };
 
   services.postgresql = {
@@ -139,7 +135,7 @@
     extraConfig = ''
       audio_output {
         type "pipewire"
-        name "My PipeWire Output"
+        name "pipe"
       }
     '';
   };
