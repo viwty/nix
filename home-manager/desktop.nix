@@ -20,8 +20,8 @@ in {
     outputs.homeManagerModules.neofetch
   ];
 
-  colorScheme = nix-colors.colorSchemes.tokyo-night-terminal-dark;
-  #xdg.configFile."hypr/wallpaper.png".source = ./hexmaniac.png;
+  colorScheme = nix-colors.colorSchemes.catppuccin-mocha;
+  xdg.configFile."hypr/wallpaper.png".source = ./NnTZsYE.png;
 
   nixpkgs = {
     overlays = with outputs.overlays; [ additions ];

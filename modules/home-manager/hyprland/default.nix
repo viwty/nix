@@ -2,13 +2,13 @@
 
 let
   inherit (nix-colors.lib-contrib { inherit pkgs; }) nixWallpaperFromScheme;
-  wallpaper = nixWallpaperFromScheme {
-   scheme = config.colorScheme;
-   width = 1920;
-   height = 1080;
-   logoScale = 6.0;
-  };
-  #wallpaper = ".config/hypr/wallpaper.png";
+  #wallpaper = nixWallpaperFromScheme {
+  # scheme = config.colorScheme;
+  # width = 1920;
+  # height = 1080;
+  # logoScale = 6.0;
+  #};
+  wallpaper = ".config/hypr/wallpaper.png";
   colors = config.colorScheme.colors;
 in {
 
@@ -36,7 +36,6 @@ in {
     enableNvidiaPatches = true;
     systemdIntegration = true;
     extraConfig = ''
-      exec-once=sleep 1
       exec-once=hyprpaper
       exec-once=pcmanfm --daemon-mode
       exec-once=mpc play
