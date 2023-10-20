@@ -7,7 +7,7 @@
     userName = "viwty";
     signing = {
       signByDefault = true;
-      key = "54AA28B7A3494432";
+      key = "F25AC839D0DA7F72";
     };
   };
 
