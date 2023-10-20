@@ -14,23 +14,23 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/mapper/root";
+    { device = "/dev/disk/by-uuid/f3859678-dfc6-4492-bcef-82a8337c7b34";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" ];
+      options = [ "subvol=root" "compress=zlib:9" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/270375ca-08cc-46c0-a349-32a45f2defe2";
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/d46deec9-4231-42a1-982d-8e7b44db3983";
 
   fileSystems."/home" =
-    { device = "/dev/mapper/root";
+    { device = "/dev/disk/by-uuid/f3859678-dfc6-4492-bcef-82a8337c7b34";
       fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" ];
+      options = [ "subvol=home" "compress=zlib:9" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/mapper/root";
+    { device = "/dev/disk/by-uuid/f3859678-dfc6-4492-bcef-82a8337c7b34";
       fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" ];
+      options = [ "subvol=nix" "noatime" "compress=zlib:9" ];
     };
 
   swapDevices = [ ];

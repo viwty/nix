@@ -21,7 +21,6 @@ in {
     wl-clipboard
     slurp
     xdg-desktop-portal-hyprland
-    hyprland-share-picker
   ];
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
@@ -34,12 +33,11 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     extraConfig = ''
       exec-once=hyprpaper
       exec-once=pcmanfm --daemon-mode
       exec-once=mpc play
-      exec-once=ts3client
 
       bezier=easing, 0.34, 1.56, 0.64, 1
       animation=global, 1, 6, easing
@@ -47,9 +45,9 @@ in {
 
       decoration {
         rounding = 12
-        blur = 0
-        blur_size = 4
-        blur_passes = 1
+        blur {
+          enabled = false
+        }
       }
 
       bind=,mouse:276,pass,^(TeamSpeak 3)$
@@ -61,7 +59,6 @@ in {
       env = MOZ_ENABLE_WAYLAND, 1
 
       windowrule=float, title:^(TermFloat)(.*)$
-      windowrule=float, title:^(TeamSpeak 3)$
 
       bind=SUPER, j, exec, gnome-calculator
       bind=SUPER, g, exec, hyprpicker -a

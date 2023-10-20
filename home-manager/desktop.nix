@@ -20,8 +20,8 @@ in {
     outputs.homeManagerModules.neofetch
   ];
 
-  colorScheme = nix-colors.colorSchemes.catppuccin-mocha;
-  xdg.configFile."hypr/wallpaper.png".source = ./NnTZsYE.png;
+  colorScheme = nix-colors.colorSchemes.tokyo-night-dark;
+  xdg.configFile."hypr/wallpaper.png".source = ./f33287488.png;
 
   nixpkgs = {
     overlays = with outputs.overlays; [ additions ];
@@ -95,6 +95,7 @@ in {
     cargo-generate
     nheko
     teamspeak_client
+    picard
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =

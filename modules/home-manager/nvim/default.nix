@@ -8,10 +8,11 @@ in {
         plugin = packer-nvim;
         type = "lua";
         config = ''
-          require("packer").startup(function(use)
+          require"packer".startup(function(use)
           use "pigpigyyy/Yuescript-vim"
           use "xiyaowong/transparent.nvim"
           use "viwty/presence.nvim"
+          use "thePrimeagen/harpoon"
 
           use {
             "VonHeikemen/lsp-zero.nvim",
@@ -39,23 +40,6 @@ in {
       plenary-nvim
       auto-pairs
       vim-endwise
-      {
-        plugin = harpoon;
-        type = "lua";
-        config = ''
-          local mark = require("harpoon.mark")
-          local ui = require("harpoon.ui")
-
-          local set = vim.keymap.set
-
-          set("n", "<C-a>", function() mark.add_file() end)
-          set("n", "<C-o>", function() ui.toggle_quick_menu() end)
-          set("n", "<A-h>", function() ui.nav_file(1) end)
-          set("n", "<A-t>", function() ui.nav_file(2) end)
-          set("n", "<A-g>", function() ui.nav_file(3) end)
-          set("n", "<A-c>", function() ui.nav_file(4) end)
-        '';
-      }
       {
         plugin = oil-nvim;
         type = "lua";
@@ -133,6 +117,18 @@ in {
         main_image = "file",
         buttons = true,
       }
+
+      local mark = require("harpoon.mark")
+      local ui = require("harpoon.ui")
+
+      local set = vim.keymap.set
+
+      set("n", "<C-a>", function() mark.add_file() end)
+      set("n", "<C-o>", function() ui.toggle_quick_menu() end)
+      set("n", "<A-h>", function() ui.nav_file(1) end)
+      set("n", "<A-t>", function() ui.nav_file(2) end)
+      set("n", "<A-g>", function() ui.nav_file(3) end)
+      set("n", "<A-c>", function() ui.nav_file(4) end)
 
       vim.cmd("set cb+=unnamedplus")
       vim.cmd("set so=10")

@@ -7,7 +7,7 @@ in {
     window.opacity = 0.8;
 
     font = {
-      normal.family = "Agave Nerd Font";
+      normal.family = "Iosevka Nerd Font";
       size = 14;
     };
 

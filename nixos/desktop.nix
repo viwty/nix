@@ -21,12 +21,17 @@
 
   #services.xserver.windowManager.bspwm.enable = true;
   programs.hyprland.enable = true;
-  programs.hyprland.nvidiaPatches = true;
+  programs.hyprland.enableNvidiaPatches = true;
   zramSwap.enable = true;
 
   services.xserver.enable = true;
   services.xserver.displayManager.sddm = {
     enable = true;
+      settings.Autologin = {
+        Session = "hyprland.desktop";
+        User = "virtio";
+        Relogin = true;
+    };
   };
 
   services.postgresql = {
@@ -70,8 +75,8 @@
 
   boot.loader.grub = {
    enable = true;
-   device = "/dev/sdc";
-   #boot.loader.grub.useOSProber = true;
+   device = "/dev/sda";
+   useOSProber = true;
    enableCryptodisk = true;
   };
 
@@ -141,7 +146,7 @@
   };
 
   fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "Agave" ]; }) ];
+    [ (nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
