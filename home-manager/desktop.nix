@@ -96,6 +96,9 @@ in {
     nheko
     teamspeak_client
     picard
+    mate.engrampa
+    mangohud
+    nix-index
   ];
 
   home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =
