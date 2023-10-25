@@ -5,7 +5,7 @@ in {
   programs.foot = {
     enable = true;
     settings = {
-      main = { font = "Iosevka Nerd Font:size=14"; };
+      main = { font = "JetBrainsMono Nerd Font:size=14"; };
 
       cursor = { style = "underline"; };
 

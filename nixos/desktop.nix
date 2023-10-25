@@ -27,10 +27,9 @@
   services.xserver.enable = true;
   services.xserver.displayManager.sddm = {
     enable = true;
-      settings.Autologin = {
-        Session = "hyprland.desktop";
-        User = "virtio";
-        Relogin = true;
+    settings.Autologin = {
+      Session = "hyprland.desktop";
+      User = "virtio";
     };
   };
 
@@ -146,7 +145,7 @@
   };
 
   fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
+    [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";

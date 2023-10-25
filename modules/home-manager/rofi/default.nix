@@ -8,7 +8,7 @@ in {
   programs.rofi = {
     package = pkgs.rofi-wayland;
 
-    font = "Iosevka Nerd Font 22px";
+    font = "JetBrainsMono Nerd Font 22px";
 
     theme = "~/.config/rofi/theme.rasi";
   };

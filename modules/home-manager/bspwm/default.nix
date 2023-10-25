@@ -29,7 +29,6 @@ in {
       HDMI-1 = [ "6" "7" "8" "9" "10" ];
     };
     startupPrograms = [
-      "armcord"
       "picom"
       "setxkbmap -layout us,ru -variant dvorak, -option grp:alt_shift_toggle,caps:escape"
       "xinput --set-prop 'Logitech G102 LIGHTSYNC Gaming Mouse' 'libinput Accel Profile' -1"

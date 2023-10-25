@@ -20,7 +20,7 @@ in {
     outputs.homeManagerModules.neofetch
   ];
 
-  colorScheme = nix-colors.colorSchemes.tokyo-night-dark;
+  colorScheme = nix-colors.colorSchemes.tokyodark-terminal;
   xdg.configFile."hypr/wallpaper.png".source = ./f33287488.png;
 
   nixpkgs = {
