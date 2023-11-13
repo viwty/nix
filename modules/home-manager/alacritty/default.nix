@@ -9,7 +9,7 @@ in {
 
       font = {
         normal.family = "JetBrainsMono Nerd Font";
-        size = 14;
+        size = 13;
       };
 
       cursor.shape = "Underline";

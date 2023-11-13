@@ -37,7 +37,7 @@ in {
       bind -n M-j previous-window
       bind -n M-k next-window
 
-      set -sg escape-time 20
+      set -sg escape-time 0
 
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
           | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'"
@@ -46,9 +46,6 @@ in {
       bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
       bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
 
-      bind-key -n 'C-,' 'send-keys C-,'
-      bind-key -n 'C-.' 'send-keys C-.'
-
       bind-key -T copy-mode-vi 'C-h' select-pane -L
       bind-key -T copy-mode-vi 'C-j' select-pane -D
       bind-key -T copy-mode-vi 'C-k' select-pane -U
@@ -56,7 +53,7 @@ in {
 
       # funky colors
       set-window-option -g window-status-current-style "bg=#${colors.base05},fg=#${colors.base00}"
-      set-option -g status-style "fg=#${colors.base05},bg=#${colors.base01}"
+      set-option -g status-style "fg=#${colors.base05},bg=#${colors.base00}"
 
       # default window title colors
       set-window-option -g window-status-style "fg=#${colors.base04},bg=default"

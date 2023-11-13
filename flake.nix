@@ -14,8 +14,10 @@
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
     nix-colors.url = "github:misterio77/nix-colors";
+
+    nur.url = "github:nix-community/NUR";
   };
-  outputs = { self, nixpkgs, home-manager, hyprland, nix-colors, ... }@inputs:
+  outputs = { self, nixpkgs, nur, home-manager, hyprland, nix-colors, ... }@inputs:
     let inherit (self) outputs;
     in {
       overlays = import ./overlays { inherit inputs outputs; };
@@ -23,20 +25,19 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        NixBTW = nixpkgs.lib.nixosSystem {
+        luna = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            hyprland.nixosModules.default
-            { programs.hyprland.enable = true; }
+            nur.nixosModules.nur
             ./nixos/desktop.nix
           ];
         };
       };
 
       homeConfigurations = {
-        "virtio@NixBTW" = home-manager.lib.homeManagerConfiguration {
+        "virtio@luna" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs nix-colors; };
+          extraSpecialArgs = { inherit inputs outputs nix-colors nur; };
           modules = [
             ./home-manager/desktop.nix
           ];

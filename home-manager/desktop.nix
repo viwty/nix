@@ -1,7 +1,8 @@
-{ inputs, outputs, lib, config, pkgs, nix-colors, ... }:
+{ inputs, outputs, lib, config, pkgs, nix-colors, nur, ... }:
 let
   inherit (nix-colors.lib-contrib { inherit pkgs; })
     gtkThemeFromScheme colorSchemeFromPicture;
+  wallpaper = ./clouds.png;
 in {
   # You can import other home-manager modules here
   imports = [
@@ -20,11 +21,15 @@ in {
     outputs.homeManagerModules.neofetch
   ];
 
-  colorScheme = nix-colors.colorSchemes.tokyodark-terminal;
-  xdg.configFile."hypr/wallpaper.png".source = ./f33287488.png;
+  #colorScheme = nix-colors.colorSchemes.catppuccin-mocha;
+  colorScheme = colorSchemeFromPicture {
+    path = wallpaper;
+    kind = "dark";
+  };
+  xdg.configFile."hypr/wallpaper.png".source = wallpaper;
 
   nixpkgs = {
-    overlays = with outputs.overlays; [ additions ];
+    overlays = with outputs.overlays; [ additions nur.overlay ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
@@ -50,9 +55,50 @@ in {
     };
   };
 
+  programs.firefox = {
+    enable = true;
+    profiles.default = {
+      id = 0;
+      search.default = "DuckDuckGo";
+      search.force = true;
+      bookmarks = [
+        {
+          name = "";
+          url = "https://search.nixos.org/packages";
+        }
+        {
+          name = "";
+          url = "https://mipmip.github.io/home-manager-option-search/";
+        }
+        {
+          name = "";
+          url = "https://nur.nix-community.org/";
+        }
+      ];
+      settings = {
+        "browser.compactmode.show" = true;
+        "browser.uidensity" = 1;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+      };
+      userChrome = lib.readFile ./firefox.css;
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        privacy-badger
+        darkreader
+        ublock-origin
+        bitwarden
+        clearurls
+        df-youtube
+        don-t-fuck-with-paste
+        enhanced-github
+        firenvim
+        sponsorblock
+        dearrow
+      ];
+    };
+  };
+
   home.packages = with pkgs; [
     neofetch
-    firefox-bin
     wireplumber
     ncmpcpp
     yt-dlp
@@ -89,20 +135,14 @@ in {
     nix-prefetch
     telegram-desktop
     sfz
-    lynx
     man-pages
     sccache
-    cargo-generate
     nheko
     teamspeak_client
     picard
     mate.engrampa
     mangohud
-    nix-index
   ];
-
-  home.file.".mozilla/native-messaging-hosts/ff2mpv.json".source =
-    "${pkgs.ff2mpv}/lib/mozilla/native-messaging-hosts/ff2mpv.json";
 
   gtk = { enable = true; };
   gtk.theme = {

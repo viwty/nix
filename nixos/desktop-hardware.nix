@@ -14,23 +14,21 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f3859678-dfc6-4492-bcef-82a8337c7b34";
+    { device = "/dev/disk/by-uuid/3ba9f0dc-edc3-4067-9150-708d69a9af69";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zlib:9" ];
-    };
-
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/d46deec9-4231-42a1-982d-8e7b44db3983";
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/f3859678-dfc6-4492-bcef-82a8337c7b34";
-      fsType = "btrfs";
-      options = [ "subvol=home" "compress=zlib:9" ];
+      options = [ "subvol=@" "compress=zlib:9" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/f3859678-dfc6-4492-bcef-82a8337c7b34";
+    { device = "/dev/disk/by-uuid/3ba9f0dc-edc3-4067-9150-708d69a9af69";
       fsType = "btrfs";
-      options = [ "subvol=nix" "noatime" "compress=zlib:9" ];
+      options = [ "subvol=nix" "compress=zlib:9" ];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/3ba9f0dc-edc3-4067-9150-708d69a9af69";
+      fsType = "btrfs";
+      options = [ "subvol=home" "compress=zlib:9" ];
     };
 
   swapDevices = [ ];

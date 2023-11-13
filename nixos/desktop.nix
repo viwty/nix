@@ -24,15 +24,6 @@
   programs.hyprland.enableNvidiaPatches = true;
   zramSwap.enable = true;
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.sddm = {
-    enable = true;
-    settings.Autologin = {
-      Session = "hyprland.desktop";
-      User = "virtio";
-    };
-  };
-
   services.postgresql = {
     enable = true;
     ensureDatabases = [];
@@ -62,8 +53,7 @@
     '';
   };
 
-  # TODO: Set your hostname
-  networking.hostName = "NixBTW";
+  networking.hostName = "luna";
   networking.extraHosts = ''
     192.168.100.100 pi
     46.29.236.25 vps
@@ -76,7 +66,7 @@
    enable = true;
    device = "/dev/sda";
    useOSProber = true;
-   enableCryptodisk = true;
+   #enableCryptodisk = true;
   };
 
   users.users.virtio = {
