@@ -2,12 +2,12 @@
 let
   inherit (nix-colors.lib-contrib { inherit pkgs; })
     gtkThemeFromScheme colorSchemeFromPicture;
-  wallpaper = ./clouds.png;
 in {
   # You can import other home-manager modules here
   imports = [
     nix-colors.homeManagerModules.default
     outputs.homeManagerModules.hyprland
+    outputs.homeManagerModules.bspwm
     outputs.homeManagerModules.alacritty
     outputs.homeManagerModules.tmux
     outputs.homeManagerModules.rofi
@@ -21,12 +21,12 @@ in {
     outputs.homeManagerModules.neofetch
   ];
 
-  #colorScheme = nix-colors.colorSchemes.catppuccin-mocha;
-  colorScheme = colorSchemeFromPicture {
-    path = wallpaper;
-    kind = "dark";
-  };
-  xdg.configFile."hypr/wallpaper.png".source = wallpaper;
+  colorScheme = nix-colors.colorSchemes.rose-pine;
+  #colorScheme = colorSchemeFromPicture {
+  #  path = ./clouds.png;
+  #  kind = "dark";
+  #};
+  xdg.configFile."hypr/wallpaper.png".source = ./miku.png;
 
   nixpkgs = {
     overlays = with outputs.overlays; [ additions nur.overlay ];
@@ -79,8 +79,24 @@ in {
         "browser.compactmode.show" = true;
         "browser.uidensity" = 1;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "devtools.onboarding.telemetry.logged" = false;
+        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+        "browser.newtabpage.activity-stream.telemetry" = false;
+        "browser.ping-centre.telemetry" = false;
+        "toolkit.telemetry.bhrPing.enabled" = false;
+        "toolkit.telemetry.enabled" = false;
+        "toolkit.telemetry.firstShutdownPing.enabled" = false;
+        "toolkit.telemetry.hybridContent.enabled" = false;
+        "toolkit.telemetry.newProfilePing.enabled" = false;
+        "toolkit.telemetry.shutdownPingSender.enabled" = false;
+        "toolkit.telemetry.unified" = false;
+        "toolkit.telemetry.updatePing.enabled" = false;
+        "toolkit.telemetry.reportingpolicy.firstRun" = false;
+        "toolkit.telemetry.archive.enabled" = false;
+        "datareporting.healthreport.uploadEnabled" = false;
+        "datareporting.policy.dataSubmissionEnabled" = false;
+        "datareporting.sessions.current.clean" = true;
       };
-      userChrome = lib.readFile ./firefox.css;
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
         darkreader
@@ -90,9 +106,9 @@ in {
         df-youtube
         don-t-fuck-with-paste
         enhanced-github
-        firenvim
         sponsorblock
         dearrow
+        user-agent-string-switcher
       ];
     };
   };
@@ -142,6 +158,9 @@ in {
     picard
     mate.engrampa
     mangohud
+    gamescope
+    ruby
+    cached-nix-shell
   ];
 
   gtk = { enable = true; };

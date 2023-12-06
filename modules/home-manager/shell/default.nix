@@ -81,6 +81,7 @@ in {
     '';
     extraConfig = ''
       def useflake () { echo "use flake" | save .envrc; direnv allow }
+      def rebuild [] { git add .; home-manager switch --flake . }
     '';
   };
 }

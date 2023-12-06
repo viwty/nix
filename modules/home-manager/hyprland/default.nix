@@ -43,6 +43,8 @@ in {
       animation=global, 1, 6, easing
       animation=workspaces, 1, 6, easing, slidevert
 
+      windowrulev2 = immediate, class:^(Terraria)
+
       decoration {
         rounding = 12
         blur {
@@ -50,13 +52,15 @@ in {
         }
       }
 
-      bind=,mouse:276,pass,^(TeamSpeak 3)$
-
       env = LIBVA_DRIVER_NAME, nvidia
       env = XDG_SESSION_TYPE, wayland
       env = GBM_BACKEND, nvidia-drm
       env = WLR_NO_HARDWARE_CURSORS, 1
       env = MOZ_ENABLE_WAYLAND, 1
+      env = WLR_DRM_NO_ATOMIC, 1
+
+      #windowrulev2 = immediate, class:^(steam_app)
+      #windowrulev2 = immediate, class:^(Minecraft)
 
       windowrule=float, title:^(TermFloat)(.*)$
 
@@ -74,14 +78,6 @@ in {
       bind=SUPER, q, killactive
       bind=SUPER, MINUS, exec, config-reload
       bind=SUPER, y, exec, firefox https://mail.proton.me/u/1/inbox
-
-      bind=,XF86AudioNext, exec, mpc next
-      bind=,XF86AudioPrev, exec, mpc prev
-      bind=,XF86AudioRaiseVolume, exec, mpc volume +5
-      bind=,XF86AudioLowerVolume, exec, mpc volume -5
-      bind=,XF86AudioPlay, exec, mpc play
-      bind=,XF86AudioPause, exec, mpc pause
-      bind=,XF86AudioStop, exec, mpc stop
 
       bind=SUPER, i, exec, hypr-toggle
 
@@ -127,6 +123,7 @@ in {
         border_size = 2
         col.active_border=0xff${colors.base0C}
         col.inactive_border=0xff${colors.base02}
+        allow_tearing = true
       }
 
       input {

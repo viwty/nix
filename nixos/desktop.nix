@@ -19,14 +19,13 @@
     };
   };
 
-  #services.xserver.windowManager.bspwm.enable = true;
   programs.hyprland.enable = true;
   programs.hyprland.enableNvidiaPatches = true;
   zramSwap.enable = true;
 
   services.postgresql = {
     enable = true;
-    ensureDatabases = [];
+    ensureDatabases = [ ];
     enableTCPIP = true;
     # port = 5432;
     authentication = pkgs.lib.mkOverride 10 ''
@@ -43,7 +42,6 @@
       GRANT ALL PRIVILEGES ON DATABASE autovirt TO virtio;
     '';
 
-     
     identMap = ''
       # ArbitraryMapName systemUser DBUser
        superuser_map      root      postgres
@@ -62,11 +60,13 @@
   time.timeZone = "Europe/Moscow";
   time.hardwareClockInLocalTime = true;
 
+  # time to fall for the meme
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.loader.grub = {
-   enable = true;
-   device = "/dev/sda";
-   useOSProber = true;
-   #enableCryptodisk = true;
+    enable = true;
+    device = "/dev/sdb";
+    useOSProber = true;
+    #enableCryptodisk = true;
   };
 
   users.users.virtio = {
@@ -94,11 +94,12 @@
       address = [ "10.66.66.2/32" "fd42:42:42::2/128" ];
       dns = [ "1.1.1.1" "1.0.0.1" ];
       privateKeyFile = "/home/virtio/.wgprivkey";
+      autostart = false;
 
       peers = [{
         publicKey = "GzIe5T+UPu6rg6PV/hCY1EycppeTSlhJHgQBEhVGjDo=";
         presharedKeyFile = "/home/virtio/.wgpresharedkey";
-        allowedIPs = [ "0.0.0.0/0" "::/0" ];
+        allowedIPs = [ "0.0.0.0/0" ];
         endpoint = "46.29.236.25:51820";
       }];
     };

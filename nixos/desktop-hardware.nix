@@ -31,6 +31,12 @@
       options = [ "subvol=home" "compress=zlib:9" ];
     };
 
+  fileSystems."/steam" = 
+    { device = "/dev/disk/by-uuid/3ba9f0dc-edc3-4067-9150-708d69a9af69";
+      fsType = "btrfs";
+      options = [ "subvol=steam" "compress=none" "noatime" ];
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

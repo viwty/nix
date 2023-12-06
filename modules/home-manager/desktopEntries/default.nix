@@ -4,7 +4,7 @@
   xdg.desktopEntries = {
     armcord = {
       name = "ArmCord";
-      exec = "armcord %U --no-sandbox";
+      exec = "armcord %U --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland";
       terminal = false;
       categories = [ "Network" ];
     };
