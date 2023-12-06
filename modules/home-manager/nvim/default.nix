@@ -10,9 +10,9 @@ in {
   };
 
   xdg.configFile."nvim".recursive = true;
-  xdg.configFile."nvim".source = ../../../nvim;
+  xdg.configFile."nvim".source = ./config;
 
   xdg.configFile."nvim/colors.vim".text = theme.text;
 
-  home.packages = with pkgs; [ sumneko-lua-language-server tree-sitter ];
+  home.packages = with pkgs; [ lua-language-server tree-sitter nil ];
 }

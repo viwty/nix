@@ -10,11 +10,11 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require'opts'
-require'plugins'
+require 'opts'
+require 'plugins'
 
 -- sourced after loading plugins because of lazy
-vim.cmd'source ~/.config/nvim/colors.vim'
+vim.cmd 'source ~/.config/nvim/colors.vim'
 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
