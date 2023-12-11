@@ -11,7 +11,6 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpaper.url = "github:hyprwm/hyprpaper";
 
     nix-colors.url = "github:misterio77/nix-colors";
 
@@ -29,7 +28,7 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             nur.nixosModules.nur
-            ./nixos/desktop.nix
+            ./main/configuration.nix
           ];
         };
       };
@@ -39,7 +38,7 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs nix-colors nur; };
           modules = [
-            ./home-manager/desktop.nix
+            ./main/home.nix
           ];
         };
       };

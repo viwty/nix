@@ -1,21 +1,13 @@
-{ config, lib, pkgs, nix-colors, ... }:
+{ config, pkgs, ... }:
 
 let
-  inherit (nix-colors.lib-contrib { inherit pkgs; }) nixWallpaperFromScheme;
-  #wallpaper = nixWallpaperFromScheme {
-  # scheme = config.colorScheme;
-  # width = 1920;
-  # height = 1080;
-  # logoScale = 6.0;
-  #};
-  wallpaper = ".config/hypr/wallpaper.png";
   colors = config.colorScheme.colors;
+  wallpaper = config.wallpaper;
 in {
 
   home.packages = with pkgs; [
     hyprpicker
     mpc-cli
-    hyprpaper
     imv
     grim
     wl-clipboard
@@ -23,19 +15,12 @@ in {
     xdg-desktop-portal-hyprland
   ];
 
-  xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = ${wallpaper}
-
-    wallpaper = HDMI-A-1, ${wallpaper}
-    wallpaper = HDMI-A-2, ${wallpaper}
-  '';
-
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
     systemd.enable = true;
     extraConfig = ''
-      exec-once=hyprpaper
+      exec-once=swaybg -i ${wallpaper}
       exec-once=pcmanfm --daemon-mode
       exec-once=mpc play
 
@@ -60,7 +45,6 @@ in {
       env = WLR_DRM_NO_ATOMIC, 1
 
       #windowrulev2 = immediate, class:^(steam_app)
-      #windowrulev2 = immediate, class:^(Minecraft)
 
       windowrule=float, title:^(TermFloat)(.*)$
 
@@ -72,8 +56,8 @@ in {
       bind=SUPER, p, exec, firefox
       bind=SUPER, l, exec, sc
       bind=SUPERSHIFT, l, exec, scwin
-      bind=SUPER, c, exec, alacritty -T TermFloat -e clip
-      bind=SUPER, r, exec, alacritty -T TermFloat -e ncmpcpp
+      bind=SUPER, c, exec, [noanim] alacritty -T TermFloat -e clip
+      bind=SUPER, r, exec, [noanim] alacritty -T TermFloat -e ncmpcpp
       bind=SUPER, u, exec, pcmanfm
       bind=SUPER, q, killactive
       bind=SUPER, MINUS, exec, config-reload

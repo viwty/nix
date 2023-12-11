@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nix-colors, buildVimPluginFrom2Nix, ... }:
+{ config, lib, pkgs, nix-colors, ... }:
 
 let
   inherit (nix-colors.lib-contrib { inherit pkgs; }) vimThemeFromScheme;

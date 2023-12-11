@@ -8,8 +8,8 @@ in {
       window.opacity = 0.8;
 
       font = {
-        normal.family = "JetBrainsMono Nerd Font";
-        size = 13;
+        normal.family = config.font;
+        size = 18;
       };
 
       cursor.shape = "Underline";

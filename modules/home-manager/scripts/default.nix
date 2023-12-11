@@ -3,13 +3,13 @@
 let
   sc = pkgs.writeShellScriptBin "sc" ''
     name=$(date +%s)
-    grim -g "$(slurp)" - | tee ~/pics/sc/$name.png | wl-copy -t image/png
+    grimshot copy area
     find ~/pics/sc -size 0 -delete
   '';
   scwin = pkgs.writeShellScriptBin "scwin" ''
     name=$(date +%s)
-    win=$(hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])'$append'"')
-    grim -g "$win" - | tee ~/pics/sc/$name.png | wl-copy -t image/png
+    grimshot copy active
+    wl-paste > ~/pics/sc/$name.png
     find ~/pics/sc -size 0 -delete
   '';
   xsc = pkgs.writeShellScriptBin "xsc" ''
@@ -29,8 +29,8 @@ let
     rm $file
   '';
   config-reload = pkgs.writeShellScriptBin "config-reload" ''
-    pkill -x hyprpaper
-    hyprpaper &
+    pkill -x swaybg
+    swaybg --image ${config.wallpaper} &
     tmux source ~/.config/tmux/tmux.conf
     hyprctl reload
   '';

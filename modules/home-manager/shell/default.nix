@@ -1,7 +1,5 @@
 { config, lib, pkgs, nix-colors, ... }:
-
-let inherit (nix-colors.lib-contrib { inherit pkgs; }) shellThemeFromScheme;
-in {
+{
   programs.nushell.enable = true;
   programs.starship = {
     enable = true;

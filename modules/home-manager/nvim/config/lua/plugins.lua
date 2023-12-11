@@ -17,6 +17,7 @@ local plugins = {
   'neovim/nvim-lspconfig',
   'nvim-telescope/telescope.nvim',
   'viwty/presence.nvim',
+  'nvim-tree/nvim-web-devicons',
   -- i hate this
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',
