@@ -2,11 +2,11 @@
 
 {
   xdg.desktopEntries = {
-    armcord = {
-      name = "ArmCord";
-      exec = "armcord %U --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    vencorddesktop = {
+      name = "Vesktop";
+      exec = "vencorddesktop --no-sandbox %U";
+      icon = "vencorddesktop";
       terminal = false;
-      categories = [ "Network" ];
     };
     craftos = {
       name = "CraftOS-PC";

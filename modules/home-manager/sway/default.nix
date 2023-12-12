@@ -41,6 +41,7 @@ in {
       config = let mod = "Mod4";
       in {
         modifier = mod;
+        workspaceAutoBackAndForth = true;
         terminal = c.terminal;
 
         keybindings = lib.mapAttrs'
@@ -67,6 +68,7 @@ in {
             "v" = "splitv";
             "m" = "fullscreen toggle";
             "o" = "floating toggle";
+            "e" = "workspace dc";
             "1" = "workspace number 1";
             "2" = "workspace number 2";
             "3" = "workspace number 3";
@@ -89,12 +91,11 @@ in {
           };
 
           assigns = {
-            "9" = [{ class = "ArmCord"; }];
+            "dc" = [{ class = "VencordDesktop"; }];
           };
 
         startup = map (cmd: { command = cmd; }) [
-          "swaybg -i ${wallpaper}"
-          "armcord --no-sandbox"
+          "vencorddesktop --no-sandbox"
           "pcmanfm --daemon-mode"
         ];
 
@@ -112,6 +113,12 @@ in {
             accel_profile = "flat";
           };
         };
+        output = {
+          "*" = { bg = "${wallpaper} fill"; };
+        };
+        workspaceOutputAssign = [
+          {workspace = "9"; output = "HDMI-A-2";}
+        ];
       };
     };
 

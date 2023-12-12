@@ -23,25 +23,25 @@ in {
       type = lib.types.str;
       description = "System wide font";
     };
-
   };
 
   config = {
     font = "Agave Nerd Font";
-    colorScheme = nix-colors.colorSchemes.catppuccin-mochiato;
+    colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
     #wallpaper = nixWallpaperFromScheme {
     #  scheme = config.colorScheme;
     #  width = 1920;
     #  height = 1080;
     #  logoScale = 6.0;
     #};
-    xdg.configFile."hypr/wallpaper.png".source = ./miku.png;
+    wallpaper = ./wallpapers/kobeni.png;
 
     nixpkgs = {
       overlays = with outputs.overlays; [ additions nur.overlay ];
       config = {
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
+        permittedInsecurePackages = [ "electron-25.9.0" ];
       };
     };
 
@@ -219,7 +219,7 @@ in {
       ncmpcpp
       yt-dlp
       ffmpeg-full
-      armcord
+      vesktop
       btop
       killall
       ripgrep

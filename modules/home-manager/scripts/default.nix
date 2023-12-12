@@ -32,7 +32,7 @@ let
     pkill -x swaybg
     swaybg --image ${config.wallpaper} &
     tmux source ~/.config/tmux/tmux.conf
-    hyprctl reload
+    #hyprctl reload
   '';
   hypr-toggle = pkgs.writeShellScriptBin "hypr-toggle" ''
     #!/usr/bin/env sh
