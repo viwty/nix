@@ -70,15 +70,15 @@ in {
         search.force = true;
         bookmarks = [
           {
-            name = "";
+            name = "Package search";
             url = "https://search.nixos.org/packages";
           }
           {
-            name = "";
+            name = "Option search";
             url = "https://mipmip.github.io/home-manager-option-search/";
           }
           {
-            name = "";
+            name = "NUR search";
             url = "https://nur.nix-community.org/";
           }
         ];

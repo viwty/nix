@@ -21,8 +21,6 @@ let
     export __GL_GSYNC_ALLOWED=0
     export __GL_VRR_ALLOWED=0
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    # Xwayland compatibility
-    export XWAYLAND_NO_GLAMOR=1
 
     sway --unsupported-gpu
   '';
@@ -41,7 +39,6 @@ in {
       config = let mod = "Mod4";
       in {
         modifier = mod;
-        workspaceAutoBackAndForth = true;
         terminal = c.terminal;
 
         keybindings = lib.mapAttrs'
@@ -57,18 +54,19 @@ in {
             "l" = "exec sc";
             "Shift+l" = "exec scwin";
             "d" = "focus left";
-            "h" = "focus up";
-            "t" = "focus down";
+            "h" = "focus down";
+            "t" = "focus up";
             "n" = "focus right";
             "Shift+d" = "move left";
-            "Shift+t" = "move up";
-            "Shift+n" = "move down";
+            "Shift+t" = "move down";
+            "Shift+n" = "move up";
             "Shift+s" = "move right";
-            "s" = "splith";
+            "w" = "splith";
             "v" = "splitv";
             "m" = "fullscreen toggle";
             "o" = "floating toggle";
             "e" = "workspace dc";
+            "Shift+e" = "move container to workspace dc";
             "1" = "workspace number 1";
             "2" = "workspace number 2";
             "3" = "workspace number 3";
@@ -96,6 +94,7 @@ in {
 
         startup = map (cmd: { command = cmd; }) [
           "vencorddesktop --no-sandbox"
+          "mpc play"
           "pcmanfm --daemon-mode"
         ];
 
@@ -118,6 +117,7 @@ in {
         };
         workspaceOutputAssign = [
           {workspace = "9"; output = "HDMI-A-2";}
+          {workspace = "dc"; output = "HDMI-A-1";}
         ];
       };
     };
