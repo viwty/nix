@@ -36,10 +36,6 @@ in {
     wayland.windowManager.sway = {
       enable = true;
 
-      extraConfig = ''
-        for_window [title="TermFloat"] floating enable
-      '';
-
       config = let mod = "Mod4";
       in {
         modifier = mod;
@@ -97,7 +93,7 @@ in {
           };
 
         startup = map (cmd: { command = cmd; }) [
-          "vencorddesktop --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland"
+          "vencorddesktop --no-sandbox"
           "mpc play"
           "pcmanfm --daemon-mode"
         ];
@@ -123,7 +119,6 @@ in {
           {workspace = "9"; output = "HDMI-A-2";}
           {workspace = "dc"; output = "HDMI-A-1";}
         ];
-
       };
     };
 
