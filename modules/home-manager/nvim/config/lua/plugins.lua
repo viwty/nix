@@ -14,10 +14,13 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter',
     cmd = 'TSUpdate'
   },
+  {
+    'IogaMaster/neocord',
+    event = "VeryLazy"
+  },
   'neovim/nvim-lspconfig',
   'nvim-telescope/telescope.nvim',
-  'viwty/presence.nvim',
-  'nvim-tree/nvim-web-devicons',
+  'pigpigyyy/Yuescript-vim',
   -- i hate this
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',

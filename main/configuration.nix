@@ -1,6 +1,6 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   # You can import other NixOS modules here
-  imports = [ outputs.nixosModules.gpg ./hardware.nix ];
+  imports = with outputs.nixosModules; [ gpg ./hardware.nix ];
 
   nixpkgs = {
     overlays = [ outputs.overlays.additions ];
@@ -137,7 +137,7 @@
   };
 
   fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "Agave" ]; }) ];
+    [ (nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";

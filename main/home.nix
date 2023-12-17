@@ -26,18 +26,19 @@ in {
   };
 
   config = {
-    font = "Agave Nerd Font";
-    colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
-    #wallpaper = nixWallpaperFromScheme {
-    #  scheme = config.colorScheme;
-    #  width = 1920;
-    #  height = 1080;
-    #  logoScale = 6.0;
-    #};
-    wallpaper = ./wallpapers/kobeni.png;
+    font = "Iosevka NF SemiBold";
+    colorScheme = nix-colors.colorSchemes.material;
+    wallpaper = nixWallpaperFromScheme {
+      scheme = config.colorScheme;
+      width = 1920;
+      height = 1080;
+      logoScale = 6.0;
+    };
+    #wallpaper = ./wallpapers/kobeni.png;
 
     nixpkgs = {
-      overlays = with outputs.overlays; [ additions nur.overlay ];
+      overlays = with outputs.overlays;
+        [ additions nur.overlay ];
       config = {
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
@@ -80,6 +81,10 @@ in {
           {
             name = "NUR search";
             url = "https://nur.nix-community.org/";
+          }
+          {
+            name = "Yandex image search";
+            url = "https://yandex.ru/images";
           }
         ];
         settings = {

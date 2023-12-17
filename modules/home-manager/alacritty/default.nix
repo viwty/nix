@@ -9,7 +9,7 @@ in {
 
       font = {
         normal.family = config.font;
-        size = 18;
+        size = 14;
       };
 
       cursor.shape = "Underline";

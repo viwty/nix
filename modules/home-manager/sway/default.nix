@@ -36,6 +36,10 @@ in {
     wayland.windowManager.sway = {
       enable = true;
 
+      extraConfig = ''
+        for_window [title="TermFloat"] floating enable
+      '';
+
       config = let mod = "Mod4";
       in {
         modifier = mod;
@@ -53,6 +57,7 @@ in {
             "Space" = "exec rofi -show drun";
             "l" = "exec sc";
             "Shift+l" = "exec scwin";
+            "j" = "exec gnome-calculator";
             "d" = "focus left";
             "h" = "focus down";
             "t" = "focus up";
@@ -88,9 +93,7 @@ in {
             "Shift+Escape" = "reload";
           };
 
-          assigns = {
-            "dc" = [{ class = "VencordDesktop"; }];
-          };
+        assigns = { "dc" = [{ class = "VencordDesktop"; }]; };
 
         startup = map (cmd: { command = cmd; }) [
           "vencorddesktop --no-sandbox"
@@ -98,7 +101,7 @@ in {
           "pcmanfm --daemon-mode"
         ];
 
-        bars = [];
+        bars = [ ];
 
         fonts = { names = [ c.font ]; };
 
@@ -112,13 +115,21 @@ in {
             accel_profile = "flat";
           };
         };
-        output = {
-          "*" = { bg = "${wallpaper} fill"; };
-        };
+        output = { "*" = { bg = "${wallpaper} fill"; }; };
         workspaceOutputAssign = [
-          {workspace = "9"; output = "HDMI-A-2";}
-          {workspace = "dc"; output = "HDMI-A-1";}
+          {
+            workspace = "9";
+            output = "HDMI-A-2";
+          }
+          {
+            workspace = "dc";
+            output = "HDMI-A-1";
+          }
         ];
+
+        gaps = {
+          inner = 15;
+        };
       };
     };
 
