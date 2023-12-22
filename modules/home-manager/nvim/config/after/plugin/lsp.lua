@@ -1,12 +1,8 @@
 local lspconfig = require 'lspconfig'
 
 local servers = {
-  'rust_analyzer', 'nushell', 'lua_ls', 'solargraph', 'nil_ls',
+  'rust_analyzer', 'nushell', 'lua_ls', 'fennel_language_server'
 }
-
-for _, v in pairs(servers) do
-  lspconfig[v].setup {}
-end
 
 vim.keymap.set('n', '<leader>h', vim.diagnostic.goto_prev)
 vim.keymap.set('n', '<leader>t', vim.diagnostic.goto_next)
@@ -82,7 +78,6 @@ cmp.setup.cmdline(':', {
   })
 })
 
--- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 for _, v in pairs(servers) do
   lspconfig[v].setup {

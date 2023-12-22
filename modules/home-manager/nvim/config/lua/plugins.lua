@@ -15,8 +15,12 @@ local plugins = {
     cmd = 'TSUpdate'
   },
   {
-    'IogaMaster/neocord',
+    'viwty/neocord',
     event = "VeryLazy"
+  },
+  {
+    'LhKipp/nvim-nu',
+    cmd = 'TSInstall nu',
   },
   'neovim/nvim-lspconfig',
   'nvim-telescope/telescope.nvim',

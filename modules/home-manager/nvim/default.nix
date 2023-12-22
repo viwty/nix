@@ -13,6 +13,9 @@ in {
   xdg.configFile."nvim".source = ./config;
 
   xdg.configFile."nvim/colors.vim".text = theme.text;
+  xdg.configFile."nvim/lua/font.lua".text = ''
+  vim.o.guifont = "${config.font}:h16"
+  '';
 
   home.packages = with pkgs; [ lua-language-server tree-sitter nil ];
 }

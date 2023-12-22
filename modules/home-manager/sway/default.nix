@@ -24,6 +24,7 @@ let
 
     sway --unsupported-gpu
   '';
+  colors = config.colorScheme.colors;
 in {
   options = with lib; {
     terminal = mkOption {
@@ -38,6 +39,10 @@ in {
 
       extraConfig = ''
         for_window [title="TermFloat"] floating enable
+        client.focused          ${colors.base05} ${colors.base0D} ${colors.base00} ${colors.base0D} ${colors.base0D}
+        client.focused_inactive ${colors.base01} ${colors.base01} ${colors.base05} ${colors.base03} ${colors.base01}
+        client.unfocused        ${colors.base01} ${colors.base00} ${colors.base05} ${colors.base01} ${colors.base01}
+        client.urgent           ${colors.base08} ${colors.base08} ${colors.base00} ${colors.base08} ${colors.base08}
       '';
 
       config = let mod = "Mod4";

@@ -4,7 +4,7 @@
   xdg.desktopEntries = {
     vencorddesktop = {
       name = "Vesktop";
-      exec = "vencorddesktop --no-sandbox %U";
+      exec = "vencorddesktop --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland %U";
       icon = "vencorddesktop";
       terminal = false;
     };

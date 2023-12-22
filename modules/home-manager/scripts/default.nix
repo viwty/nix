@@ -4,6 +4,7 @@ let
   sc = pkgs.writeShellScriptBin "sc" ''
     name=$(date +%s)
     grimshot copy area
+    wl-paste > ~/pics/sc/$name.png
     find ~/pics/sc -size 0 -delete
   '';
   scwin = pkgs.writeShellScriptBin "scwin" ''
@@ -21,12 +22,6 @@ let
   '';
   clip = pkgs.writeShellScriptBin "clip" ''
     wf-recorder -g "0,0 1920x1080" -f $HOME/clips/`(date +%s)`.mp4 -a
-  '';
-  six = pkgs.writeShellScriptBin "six" ''
-    file=$(mktemp)
-    convert $1 -resize 800x480 sixel:$file
-    cat $file
-    rm $file
   '';
   config-reload = pkgs.writeShellScriptBin "config-reload" ''
     pkill -x swaybg
@@ -50,6 +45,9 @@ let
     fi
     hyprctl reload
   '';
+  blockbench = pkgs.writeShellScriptBin "blockbench" ''
+    blockbench-electron --enable-features=UseOzonePlatform --ozone-platform=wayland
+  '';
 in {
   home.packages = with pkgs; [
     xsc
@@ -58,7 +56,7 @@ in {
     clip
     config-reload
     hypr-toggle
-    six
+    blockbench
     # dependencies
     maim
     jq

@@ -80,6 +80,7 @@
     extraConfig = ''
       def useflake () { echo "use flake" | save .envrc; direnv allow }
       def rebuild [] { git add .; home-manager switch --flake . }
+      def fenWatch [] { watch -g '*.fnl' . {|op, path| if $op == "Create" {clear; fennel --add-package-path "?.lua;?/init.lua" --require-as-include --use-bit-lib -c $path | save -f $"(echo $path | str substring 0..-4).lua"}} }
     '';
   };
 }

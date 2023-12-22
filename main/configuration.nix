@@ -19,8 +19,6 @@
     };
   };
 
-  programs.hyprland.enable = true;
-  programs.hyprland.enableNvidiaPatches = true;
   zramSwap.enable = true;
 
   services.postgresql = {

@@ -7,7 +7,7 @@ in {
   imports = [ nix-colors.homeManagerModules.default ]
     ++ (with outputs.homeManagerModules; [
       swaybg
-      sway
+      hyprland
       alacritty
       rofi
       scripts
@@ -16,6 +16,7 @@ in {
       shell
       mako
       neofetch
+      ./pkgs.nix
     ]);
 
   options = {
@@ -27,14 +28,14 @@ in {
 
   config = {
     font = "Iosevka NF SemiBold";
-    colorScheme = nix-colors.colorSchemes.material;
-    wallpaper = nixWallpaperFromScheme {
-      scheme = config.colorScheme;
-      width = 1920;
-      height = 1080;
-      logoScale = 6.0;
-    };
-    #wallpaper = ./wallpapers/kobeni.png;
+    colorScheme = nix-colors.colorSchemes.onedark;
+    wallpaper = ./wallpapers/shrimple.png;
+    #wallpaper = nixWallpaperFromScheme {
+    #  scheme = config.colorScheme;
+    #  width = 1920;
+    #  height = 1080;
+    #  logoScale = 6.0;
+    #};
 
     nixpkgs = {
       overlays = with outputs.overlays;
@@ -52,16 +53,6 @@ in {
     };
 
     programs.home-manager.enable = true;
-
-    services.mpd-discord-rpc = {
-      enable = true;
-      settings.id = 1129458952791400500;
-      settings.format = {
-        timestamp = "left";
-        large_image = "cri";
-        small_image = "";
-      };
-    };
 
     programs.firefox = {
       enable = true;
@@ -85,6 +76,14 @@ in {
           {
             name = "Yandex image search";
             url = "https://yandex.ru/images";
+          }
+          {
+            name = "Fennel reference";
+            url = "https://fennel-lang.org/reference";
+          }
+          {
+            name = "Urn symbol index";
+            url = "https://urn-lang.com/docs/";
           }
         ];
         settings = {
@@ -218,51 +217,16 @@ in {
 
     programs.lazygit.enable = true;
 
-    home.packages = with pkgs; [
-      neofetch
-      wireplumber
-      ncmpcpp
-      yt-dlp
-      ffmpeg-full
-      vesktop
-      btop
-      killall
-      ripgrep
-      yue
-      imagemagick
-      mpv
-      wf-recorder
-      prismlauncher
-      pcmanfm
-      bitwarden
-      gimp
-      steam
-      qpwgraph
-      protontricks
-      fzf
-      virt-manager
-      gnome.gnome-calculator
-      wine64
-      p7zip
-      craftos-pc
-      pavucontrol
-      ffmpegthumbnailer
-      nixfmt
-      qbittorrent
-      telegram-desktop
-      man-pages
-      sccache
-      picard
-      mate.engrampa
-      cached-nix-shell
-      rustup
-      gcc
-    ];
-
-    gtk = { enable = true; };
-    gtk.theme = {
-      name = "${config.colorScheme.slug}";
-      package = gtkThemeFromScheme { scheme = config.colorScheme; };
+    gtk = {
+      enable = true;
+      theme = {
+        name = config.colorScheme.slug;
+        package = gtkThemeFromScheme { scheme = config.colorScheme; };
+      };
+      cursorTheme = {
+        package = pkgs.apple-cursor;
+        name = "apple-cursor";
+      };
     };
 
     # Nicely reload system units when changing configs
