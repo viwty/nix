@@ -8,7 +8,7 @@ local plugins = {
   },
   {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
+    event = 'InsertEnter',
   },
   {
     'nvim-treesitter/nvim-treesitter',
@@ -16,7 +16,7 @@ local plugins = {
   },
   {
     'viwty/neocord',
-    event = "VeryLazy"
+    event = 'VeryLazy'
   },
   {
     'LhKipp/nvim-nu',

@@ -3,13 +3,13 @@
 let
   sc = pkgs.writeShellScriptBin "sc" ''
     name=$(date +%s)
-    grimshot copy area
+    grimblast copy area
     wl-paste > ~/pics/sc/$name.png
     find ~/pics/sc -size 0 -delete
   '';
   scwin = pkgs.writeShellScriptBin "scwin" ''
     name=$(date +%s)
-    grimshot copy active
+    grimblast copy active
     wl-paste > ~/pics/sc/$name.png
     find ~/pics/sc -size 0 -delete
   '';
@@ -50,7 +50,7 @@ let
   '';
 in {
   home.packages = with pkgs; [
-    xsc
+    #xsc
     sc
     scwin
     clip

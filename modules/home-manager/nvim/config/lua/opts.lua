@@ -29,9 +29,6 @@ vim.g.neovide_cursor_vfx_particle_density = 30
 vim.cmd("set cb=unnamedplus")
 vim.cmd("set so=20")
 
--- best colors
-vim.cmd 'autocmd BufNewFile,BufRead *.urn :set filetype=clojure'
-
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', 'gk', { silent = true })
 vim.keymap.set('n', 'j', 'gj', { silent = true })

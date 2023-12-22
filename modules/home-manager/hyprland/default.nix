@@ -32,7 +32,7 @@ in {
     hyprpicker
     mpc-cli
     imv
-    sway-contrib.grimshot
+    grimblast
     wl-clipboard
     xdg-desktop-portal-hyprland
     hypr
