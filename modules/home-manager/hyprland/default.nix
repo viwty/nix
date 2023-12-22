@@ -46,7 +46,7 @@ in {
       exec-once=pcmanfm --daemon-mode
       exec-once=mpc play
       exec-once=hyprctl setcursor macOS-BigSur 24
-      exec-once=vencorddesktop --no-sandbox
+      exec-once=vencorddesktop --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland
 
       bezier=easing, 0.34, 1.56, 0.64, 1
       animation=global, 1, 6, easing
