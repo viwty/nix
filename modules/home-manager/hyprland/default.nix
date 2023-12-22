@@ -8,7 +8,7 @@ let
     # Hardware cursors not yet working on wlroots
     export WLR_NO_HARDWARE_CURSORS=1
     export XCURSOR_THEME="macOS-BigSur"
-    export XCURSOR_SIZE=24
+    export XCURSOR_SIZE=22
     # Set wlroots renderer to Vulkan to avoid flickering
     export WLR_RENDERER=vulkan
     # General wayland environment variables
@@ -45,8 +45,8 @@ in {
       exec-once=swaybg -i ${wallpaper}
       exec-once=pcmanfm --daemon-mode
       exec-once=mpc play
-      exec-once=hyprctl setcursor macOS-BigSur 24
-      exec-once=vencorddesktop --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland
+      exec-once=hyprctl setcursor macOS-BigSur 22
+      exec-once=vencorddesktop --no-sandbox
 
       bezier=easing, 0.34, 1.56, 0.64, 1
       animation=global, 1, 6, easing
@@ -71,7 +71,7 @@ in {
       #windowrulev2 = immediate, class:^(steam_app)
 
       windowrule=float, title:^(TermFloat)(.*)$
-      windowrule=workspace 10, class:^(VencordDesktop)(.*)$
+      windowrule=workspace 10, class:^(VencordDesktop)$
 
       bind=SUPER, j, exec, gnome-calculator
       bind=SUPER, g, exec, hyprpicker -a
