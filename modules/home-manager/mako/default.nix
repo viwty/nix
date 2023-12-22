@@ -8,7 +8,6 @@ in {
     backgroundColor = "#${colors.base00}";
     borderColor = "#${colors.base0D}";
     textColor = "#${colors.base05}";
-    font = "${config.font} 12";
 
     layer = "overlay";
     defaultTimeout = 5000;
