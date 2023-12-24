@@ -1,4 +1,4 @@
 { pkgs ? (import ../nixpkgs.nix) { } }: {
   yue = pkgs.callPackage ./yue.nix { };
-  fennel-language-server = pkgs.callPackage ./fennel-language-server.nix { };
+  fennel-ls = pkgs.callPackage ./fennel-ls.nix { };
 }

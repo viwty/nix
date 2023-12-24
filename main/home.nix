@@ -28,8 +28,8 @@ in {
 
   config = {
     font = "Iosevka NF SemiBold";
-    colorScheme = nix-colors.colorSchemes.onedark;
-    wallpaper = ./wallpapers/shrimple.png;
+    colorScheme = nix-colors.colorSchemes.material;
+    wallpaper = ./wallpapers/miku.png;
     #wallpaper = nixWallpaperFromScheme {
     #  scheme = config.colorScheme;
     #  width = 1920;

@@ -1,7 +1,7 @@
 local lspconfig = require 'lspconfig'
 
 local servers = {
-  'rust_analyzer', 'nushell', 'lua_ls', 'fennel_language_server'
+  'rust_analyzer', 'nushell', 'lua_ls', 'fennel_ls'
 }
 
 vim.keymap.set('n', '<leader>h', vim.diagnostic.goto_prev)

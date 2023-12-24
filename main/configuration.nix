@@ -50,9 +50,11 @@
   };
 
   networking.hostName = "luna";
+  networking.nameservers = [ "1.1.1.1" "1.1.0.0" ];
   networking.extraHosts = ''
     192.168.100.100 pi
-    46.29.236.25 vps
+    194.226.49.153 vps
+    147.45.196.168 vpn
   '';
 
   time.timeZone = "Europe/Moscow";
@@ -63,7 +65,6 @@
   boot.loader.grub = {
     enable = true;
     device = "/dev/sdb";
-    useOSProber = true;
     #enableCryptodisk = true;
   };
 
@@ -93,13 +94,12 @@
       address = [ "10.66.66.2/32" "fd42:42:42::2/128" ];
       dns = [ "1.1.1.1" "1.0.0.1" ];
       privateKeyFile = "/home/virtio/.wgprivkey";
-      autostart = false;
 
       peers = [{
-        publicKey = "GzIe5T+UPu6rg6PV/hCY1EycppeTSlhJHgQBEhVGjDo=";
+        publicKey = "YIVH1HPD1Hm78wzazKzLyHyg/0Ri1txSc2VnN/6BjwE=";
         presharedKeyFile = "/home/virtio/.wgpresharedkey";
-        allowedIPs = [ "0.0.0.0/0" ];
-        endpoint = "46.29.236.25:51820";
+        allowedIPs = [ "0.0.0.0/0" "::/0" ];
+        endpoint = "147.45.196.168:56032";
       }];
     };
   };

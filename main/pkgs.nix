@@ -40,7 +40,7 @@
     gcc
     luajitPackages.fennel
     urn
-    fennel-language-server
+    fennel-ls
     mindustry-wayland
     blockbench-electron
     neovide
