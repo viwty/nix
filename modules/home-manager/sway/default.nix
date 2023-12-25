@@ -60,8 +60,8 @@ in {
             "r" = "exec alacritty -T TermFloat -e ncmpcpp";
             "u" = "exec pcmanfm";
             "Space" = "exec rofi -show drun";
-            "l" = "exec sc";
-            "Shift+l" = "exec scwin";
+            "l" = "exec sc grimshot";
+            "Shift+l" = "exec scwin grimshot";
             "j" = "exec gnome-calculator";
             "d" = "focus left";
             "h" = "focus down";

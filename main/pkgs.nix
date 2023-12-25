@@ -38,7 +38,8 @@
     cached-nix-shell
     rustup
     gcc
-    luajitPackages.fennel
+    # why nix, why?
+    (luajit.withPackages (p: with p; [fennel readline]))
     urn
     fennel-ls
     mindustry-wayland

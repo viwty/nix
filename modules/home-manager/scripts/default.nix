@@ -3,13 +3,13 @@
 let
   sc = pkgs.writeShellScriptBin "sc" ''
     name=$(date +%s)
-    grimblast copy area
+    $1 copy area
     wl-paste > ~/pics/sc/$name.png
     find ~/pics/sc -size 0 -delete
   '';
   scwin = pkgs.writeShellScriptBin "scwin" ''
     name=$(date +%s)
-    grimblast copy active
+    $1 copy active
     wl-paste > ~/pics/sc/$name.png
     find ~/pics/sc -size 0 -delete
   '';

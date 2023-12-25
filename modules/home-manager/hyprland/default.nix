@@ -7,8 +7,6 @@ let
     # https://github.com/crispyricepc/sway-nvidia
     # Hardware cursors not yet working on wlroots
     export WLR_NO_HARDWARE_CURSORS=1
-    export XCURSOR_THEME="macOS-BigSur"
-    export XCURSOR_SIZE=22
     # Set wlroots renderer to Vulkan to avoid flickering
     export WLR_RENDERER=vulkan
     # General wayland environment variables
@@ -45,7 +43,6 @@ in {
       exec-once=swaybg -i ${wallpaper}
       exec-once=pcmanfm --daemon-mode
       exec-once=mpc play
-      exec-once=hyprctl setcursor macOS-BigSur 22
       exec-once=vencorddesktop --no-sandbox
 
       bezier=easing, 0.34, 1.56, 0.64, 1
@@ -57,7 +54,7 @@ in {
       decoration {
         rounding = 12
         blur {
-          enabled = false
+          enabled = true
         }
       }
 
@@ -79,8 +76,8 @@ in {
       bind=SUPERSHIFT, return, exec, alacritty -e tmux attach
       bind=SUPER, space, exec, rofi -show drun
       bind=SUPER, p, exec, firefox
-      bind=SUPER, l, exec, sc
-      bind=SUPERSHIFT, l, exec, scwin
+      bind=SUPER, l, exec, sc grimblast
+      bind=SUPERSHIFT, l, exec, scwin grimblast
       bind=SUPER, c, exec, [noanim] alacritty -T TermFloat -e clip
       bind=SUPER, r, exec, [noanim] alacritty -T TermFloat -e ncmpcpp
       bind=SUPER, u, exec, pcmanfm
