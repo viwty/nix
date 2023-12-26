@@ -60,11 +60,9 @@
   time.timeZone = "Europe/Moscow";
   time.hardwareClockInLocalTime = true;
 
-  # time to fall for the meme
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.loader.grub = {
     enable = true;
-    device = "/dev/sdb";
+    device = "/dev/sda";
     #enableCryptodisk = true;
   };
 
