@@ -33,4 +33,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', 'gk', { silent = true })
 vim.keymap.set('n', 'j', 'gj', { silent = true })
 
+vim.keymap.set('n', '<leader>u', function()
+  local file = vim.api.nvim_buf_get_name(0)
+  vim.fn.system { 'paste', file }
+end)
+
 vim.keymap.set('n', '<C-w>h', ':split<CR>')

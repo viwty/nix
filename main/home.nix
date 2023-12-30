@@ -27,9 +27,9 @@ in {
   };
 
   config = {
-    font = "Iosevka NF SemiBold";
+    font = "JetBrainsMono Nerd Font";
     colorScheme = nix-colors.colorSchemes.tokyo-night-storm;
-    wallpaper = ./wallpapers/tao.png;
+    wallpaper = ./wallpapers/031a6fd0a6ec45e4395be745a2647b07.jpg;
     #wallpaper = nixWallpaperFromScheme {
     #  scheme = config.colorScheme;
     #  width = 1920;

@@ -55,6 +55,8 @@ in {
         rounding = 12
         blur {
           enabled = true
+          size = 4
+          passes = 2
         }
       }
 
@@ -98,6 +100,8 @@ in {
       bind=SUPERSHIFT, h, movewindow, d
       bind=SUPERSHIFT, t, movewindow, u
       bind=SUPERSHIFT, n, movewindow, r
+
+      bind=SUPER, f, exec, wl-paste | paste
 
       bind=SUPER, e, workspace, 10
       bind=SUPERSHIFT, e, movetoworkspacesilent, 10

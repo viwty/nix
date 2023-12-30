@@ -20,6 +20,7 @@ let
       maim -Bs | tee ~/pics/sc/$(date +%s).png | xclip -sel clip -t image/png
     fi
   '';
+  paste = pkgs.writeShellScriptBin "paste" (builtins.readFile ./paste.sh);
   clip = pkgs.writeShellScriptBin "clip" ''
     wf-recorder -g "0,0 1920x1080" -f $HOME/clips/`(date +%s)`.mp4 -a
   '';
@@ -36,7 +37,6 @@ let
         hyprctl --batch "\
             keyword animations:enabled 0;\
             keyword decoration:drop_shadow 0;\
-            keyword decoration:blur 0;\
             keyword general:gaps_in 0;\
             keyword general:gaps_out 0;\
             keyword general:border_size 1;\
@@ -57,6 +57,7 @@ in {
     config-reload
     hypr-toggle
     blockbench
+    paste
     # dependencies
     maim
     jq

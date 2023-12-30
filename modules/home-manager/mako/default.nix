@@ -13,6 +13,8 @@ in {
     defaultTimeout = 5000;
     output = "HDMI-A-1";
 
+    font = "${config.font} 8";
+
     extraConfig = ''
       [urgency=low]
       background-color=#${colors.base00}

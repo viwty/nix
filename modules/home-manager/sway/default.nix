@@ -71,6 +71,7 @@ in {
             "Shift+t" = "move down";
             "Shift+n" = "move up";
             "Shift+s" = "move right";
+            "f" = "exec wl-paste | paste";
             "w" = "splith";
             "v" = "splitv";
             "m" = "fullscreen toggle";
