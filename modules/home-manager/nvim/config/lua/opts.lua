@@ -20,12 +20,6 @@ vim.o.linebreak = true
 vim.o.swapfile = false
 vim.o.backup = false
 
-vim.g.neovide_transparency = 0.8
-vim.g.neovide_hide_mouse_when_typing = true
-vim.g.neovide_remember_window_size = false
-vim.g.neovide_cursor_vfx_mode = "pixiedust"
-vim.g.neovide_cursor_vfx_particle_density = 30
-
 vim.cmd("set cb=unnamedplus")
 vim.cmd("set so=20")
 

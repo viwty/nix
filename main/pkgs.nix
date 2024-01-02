@@ -40,10 +40,8 @@
     gcc
     # why nix, why?
     (luajit.withPackages (p: with p; [fennel readline]))
-    urn
     fennel-ls
     mindustry-wayland
     blockbench-electron
-    neovide
   ];
 }

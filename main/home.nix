@@ -16,6 +16,7 @@ in {
       shell
       mako
       neofetch
+      urn
       ./pkgs.nix
     ]);
 
@@ -27,9 +28,14 @@ in {
   };
 
   config = {
-    font = "JetBrainsMono Nerd Font";
-    colorScheme = nix-colors.colorSchemes.tokyo-night-storm;
-    wallpaper = ./wallpapers/031a6fd0a6ec45e4395be745a2647b07.jpg;
+    wallpaper = ./wallpapers/somniphobic-stargazers.png;
+    font = "Iosevka Nerd Font";
+    colorScheme = nix-colors.colorSchemes.nord;
+    #colorScheme = (let wallpaper = config.wallpaper;
+    #in colorSchemeFromPicture {
+    #  path = wallpaper;
+    #  kind = "dark";
+    #});
     #wallpaper = nixWallpaperFromScheme {
     #  scheme = config.colorScheme;
     #  width = 1920;
@@ -38,8 +44,7 @@ in {
     #};
 
     nixpkgs = {
-      overlays = with outputs.overlays;
-        [ additions nur.overlay ];
+      overlays = with outputs.overlays; [ additions nur.overlay ];
       config = {
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
@@ -224,8 +229,8 @@ in {
         package = gtkThemeFromScheme { scheme = config.colorScheme; };
       };
       cursorTheme = {
-        package = pkgs.apple-cursor;
-        name = "apple-cursor";
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Normal-Classic";
       };
     };
 

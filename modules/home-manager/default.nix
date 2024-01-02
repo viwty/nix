@@ -10,4 +10,5 @@
   neofetch = import ./neofetch;
   sway = import ./sway;
   swaybg = import ./sway/swaybg.nix;
+  urn = import ./urn;
 }

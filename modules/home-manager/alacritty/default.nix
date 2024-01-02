@@ -5,11 +5,11 @@ in {
   programs.alacritty = {
     enable = true;
     settings = {
-      window.opacity = 0.8;
+      window.opacity = 0.6;
 
       font = {
         normal.family = config.font;
-        size = 18;
+        size = 17;
       };
 
       cursor.shape = "Underline";

@@ -28,12 +28,6 @@ require 'autocmds'
 
 -- sourced after loading plugins because of lazy
 vim.cmd 'source ~/.config/nvim/colors.vim'
--- nix manages my font
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  callback = function()
-    vim.cmd 'source ~/.config/nvim/lua/font.lua'
-  end
-})
 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {

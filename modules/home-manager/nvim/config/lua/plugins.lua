@@ -24,7 +24,7 @@ local plugins = {
   },
   'neovim/nvim-lspconfig',
   'nvim-telescope/telescope.nvim',
-  'pigpigyyy/Yuescript-vim',
+  'ahmedkhalf/project.nvim',
   -- i hate this
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',

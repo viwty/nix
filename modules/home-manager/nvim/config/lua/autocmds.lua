@@ -13,6 +13,6 @@ c({ 'BufNewFile', 'BufRead' }, {
   end
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+c({ "BufWritePre" }, {
   callback = function() vim.lsp.buf.format { async = false } end,
 })
