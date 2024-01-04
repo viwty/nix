@@ -13,6 +13,13 @@ c({ 'BufNewFile', 'BufRead' }, {
   end
 })
 
+c({ 'BufNewFile', 'BufRead' }, {
+  pattern = { '*.fnl' },
+  callback = function()
+    vim.keymap.set('n', '<leader>f', ':%! fnlfmt %<CR>:w<CR>')
+  end
+})
+
 c({ "BufWritePre" }, {
   callback = function() vim.lsp.buf.format { async = false } end,
 })

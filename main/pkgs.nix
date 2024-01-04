@@ -39,8 +39,9 @@
     rustup
     gcc
     # why nix, why?
-    (luajit.withPackages (p: with p; [fennel readline]))
+    (luajit.withPackages (p: with p; [fennel readline luafilesystem]))
     fennel-ls
+    fnlfmt
     mindustry-wayland
     blockbench-electron
   ];

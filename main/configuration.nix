@@ -91,14 +91,27 @@
     wg0 = {
       address = [ "10.66.66.2/32" "fd42:42:42::2/128" ];
       dns = [ "1.1.1.1" "1.0.0.1" ];
-      privateKeyFile = "/home/virtio/.wgprivkey";
+      privateKeyFile = "/home/virtio/.config/.wg0privkey";
       autostart = false;
 
       peers = [{
         publicKey = "YIVH1HPD1Hm78wzazKzLyHyg/0Ri1txSc2VnN/6BjwE=";
-        presharedKeyFile = "/home/virtio/.wgpresharedkey";
+        presharedKeyFile = "/home/virtio/.config/wg0presharedkey";
         allowedIPs = [ "0.0.0.0/0" "::/0" ];
         endpoint = "147.45.196.168:56032";
+      }];
+    };
+    wg1 = {
+      address = [ "10.66.66.2/32" "fd42:42:42::2/128" ];
+      dns = [ "1.1.1.1" "1.0.0.1" ];
+      privateKeyFile = "/home/virtio/.config/wg1privkey";
+      autostart = true;
+
+      peers = [{
+        publicKey = "DJOd3EDp7iB8k6mLiS3S67pVzlzmdvv9fRuHzzy/fXE=";
+        presharedKeyFile = "/home/virtio/.config/wg1presharedkey";
+        allowedIPs = [ "10.66.66.0/24" ];
+        endpoint = "194.226.49.153:50868";
       }];
     };
   };
