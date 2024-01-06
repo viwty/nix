@@ -50,7 +50,7 @@
   };
 
   networking.hostName = "luna";
-  networking.nameservers = [ "1.1.1.1" "1.1.0.0" ];
+  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
   networking.extraHosts = ''
     192.168.100.100 pi
     194.226.49.153 vps
@@ -63,7 +63,6 @@
   boot.loader.grub = {
     enable = true;
     device = "/dev/sda";
-    #enableCryptodisk = true;
   };
 
   users.users.virtio = {
@@ -84,14 +83,13 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  services.ratbagd.enable = true;
 
-  networking.firewall = { enable = false; };
+  networking.firewall.enable = false;
   networking.wg-quick.interfaces = {
     wg0 = {
       address = [ "10.66.66.2/32" "fd42:42:42::2/128" ];
       dns = [ "1.1.1.1" "1.0.0.1" ];
-      privateKeyFile = "/home/virtio/.config/.wg0privkey";
+      privateKeyFile = "/home/virtio/.config/wg0privkey";
       autostart = false;
 
       peers = [{
@@ -102,7 +100,7 @@
       }];
     };
     wg1 = {
-      address = [ "10.66.66.2/32" "fd42:42:42::2/128" ];
+      address = [ "11.66.66.2/32" "fd42:42:42::2/128" ];
       dns = [ "1.1.1.1" "1.0.0.1" ];
       privateKeyFile = "/home/virtio/.config/wg1privkey";
       autostart = true;
@@ -110,7 +108,7 @@
       peers = [{
         publicKey = "DJOd3EDp7iB8k6mLiS3S67pVzlzmdvv9fRuHzzy/fXE=";
         presharedKeyFile = "/home/virtio/.config/wg1presharedkey";
-        allowedIPs = [ "10.66.66.0/24" ];
+        allowedIPs = [ "11.66.66.0/24" ];
         endpoint = "194.226.49.153:50868";
       }];
     };
@@ -127,7 +125,7 @@
       driSupport32Bit = true;
       extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl vulkan-validation-layers];
     };
-    opentabletdriver = { enable = true; };
+    opentabletdriver.enable = true;
   };
 
   systemd.services.mpd.environment = { XDG_RUNTIME_DIR = "/run/user/1000"; };

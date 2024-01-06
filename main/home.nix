@@ -212,7 +212,7 @@ in {
 
     programs.git = {
       enable = true;
-      userEmail = "viwty@proton.me"; # It's in the GPG key anyway.
+      userEmail = "viwty@proton.me";
       userName = "viwty";
       signing = {
         signByDefault = true;
@@ -227,10 +227,6 @@ in {
       theme = {
         name = config.colorScheme.slug;
         package = gtkThemeFromScheme { scheme = config.colorScheme; };
-      };
-      cursorTheme = {
-        package = pkgs.bibata-cursors;
-        name = "Bibata-Normal-Classic";
       };
     };
 

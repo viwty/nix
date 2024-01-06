@@ -9,7 +9,6 @@
     btop
     killall
     ripgrep
-    yue
     imagemagick
     mpv
     wf-recorder

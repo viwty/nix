@@ -5,7 +5,7 @@ in {
   programs.alacritty = {
     enable = true;
     settings = {
-      window.opacity = 0.6;
+      window.opacity = 0.9;
 
       font = {
         normal.family = config.font;
