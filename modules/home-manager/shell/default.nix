@@ -1,8 +1,8 @@
 { config, lib, pkgs, nix-colors, ... }:
 {
-  programs.nushell.enable = true;
   programs.starship = {
     enable = true;
+    enableZshIntegration = true;
     settings = {
       format = lib.concatStrings [
         "$username"
@@ -17,9 +17,9 @@
       ];
       directory.style = "blue";
       character = {
-        success_symbol = "[❯](purple)";
-        error_symbol = "[❯](red)";
-        vimcmd_symbol = "[❮](green)";
+        success_symbol = "[>](purple)";
+        error_symbol = "[>](red)";
+        vimcmd_symbol = "[<](green)";
       };
       git_branch = {
         format = "[$branch]($style)";
@@ -52,35 +52,33 @@
   programs.bat.enable = true;
   programs.direnv = {
     enable = true;
+    enableZshIntegration = true;
     nix-direnv.enable = true;
   };
 
-  home.packages = with pkgs; [ waifu2x-converter-cpp ];
-
-  programs.nushell = {
+  # thefuck is THE program you need on any linux install
+  home.packages = with pkgs; [ waifu2x-converter-cpp zsh-z thefuck ];
+  xdg.configFile."zsh/z".text = ''
+  source ${pkgs.zsh-z.outPath}/share/zsh-z/zsh-z.plugin.zsh
+  '';
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    autocd = true;
+    dotDir = ".config/zsh";
     shellAliases = {
       lg = "lazygit";
-      v = ''
-        fzf --bind 'enter:become(nvim {})'
-      '';
       grep = "rg";
       cat = "bat";
-      ddg = "lynx https://lite.duckduckgo.com/lite";
       waifu = "waifu2x-converter-cpp --scale-ratio 4 -i";
     };
-    envFile.text = ''
-      $env.NIXPKGS_ALLOW_UNFREE = 1
-      $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/virtio/.cargo/bin')
-      $env.RUSTC_WRAPPER = (which sccache | get path)
-
-      $env.config = {
-        show_banner: false
-      }
+    envExtra = ''
+      export PATH=/home/virtio/.cargo/bin:$PATH
+      RUSTC_WRAPPER="$(which sccache)"
+      export RUSTC_WRAPPER
+      EDITOR=nvim
+      export EDITOR
     '';
-    extraConfig = ''
-      def useflake () { echo "use flake" | save .envrc; direnv allow }
-      def rebuild [] { git add .; home-manager switch --flake . }
-      def fenWatch [] { watch -g '*.fnl' . {|op, path| if $op == "Create" {clear; fennel --add-package-path "?.lua;?/init.lua" --require-as-include --use-bit-lib -c $path | save -f $"(echo $path | str substring 0..-4).lua"}} }
-    '';
+    initExtra = builtins.readFile ./zinit;
   };
 }

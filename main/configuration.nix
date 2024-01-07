@@ -65,10 +65,11 @@
     device = "/dev/sda";
   };
 
+  programs.zsh.enable = true;
   users.users.virtio = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" ];
-    shell = pkgs.nushell;
+    shell = pkgs.zsh;
   };
   programs.dconf.enable = true;
 
@@ -145,7 +146,7 @@
   };
 
   fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "Iosevka" ]; }) ];
+    [ (nerdfonts.override { fonts = [ "Agave" ]; }) ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";

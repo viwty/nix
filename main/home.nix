@@ -29,7 +29,7 @@ in {
 
   config = {
     wallpaper = ./wallpapers/somniphobic-stargazers.png;
-    font = "Iosevka Nerd Font";
+    font = "Agave Nerd Font";
     colorScheme = nix-colors.colorSchemes.nord;
     #colorScheme = (let wallpaper = config.wallpaper;
     #in colorSchemeFromPicture {
@@ -160,6 +160,11 @@ in {
 
         bind n command-prompt "rename window '%%'"
         bind w new-window -c "#{pane_current_path}"
+
+        set-window-option -g mode-keys vi
+        bind u copy-mode
+        bind-key -T copy-mode-vi 'v' send -X begin-selection
+        bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 
         bind -n M-j previous-window
         bind -n M-k next-window
