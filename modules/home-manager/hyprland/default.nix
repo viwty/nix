@@ -49,6 +49,10 @@ in {
       animation=global, 1, 6, easing
       animation=workspaces, 1, 6, easing, slidevert
 
+      animations {
+        enabled = false
+      }
+
       windowrulev2 = immediate, class:^(Terraria)
 
       decoration {

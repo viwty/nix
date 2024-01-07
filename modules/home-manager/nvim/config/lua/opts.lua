@@ -20,8 +20,8 @@ vim.o.linebreak = true
 vim.o.swapfile = false
 vim.o.backup = false
 
-vim.cmd("set cb=unnamedplus")
-vim.cmd("set so=20")
+vim.o.scrolloff = "7"
+vim.o.clipboard = "unnamedplus"
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', 'gk', { silent = true })
